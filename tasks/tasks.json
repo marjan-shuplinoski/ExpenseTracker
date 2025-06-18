@@ -1,0 +1,867 @@
+{
+  "tasks": [
+    {
+      "id": "d9b80b92-fdc6-4a38-9e04-19ef2fea0c1a",
+      "name": "Backend: Project Initialization",
+      "description": "Create backend directory, initialize npm, install TypeScript, ESLint, Prettier, dotenv, and set up tsconfig.json.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/package.json",
+          "type": "TO_MODIFY",
+          "description": "Backend dependencies and scripts",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create backend directory\n- Run npm init\n- Install TypeScript, ESLint, Prettier, dotenv\n- Create tsconfig.json and .env.example",
+      "verificationCriteria": "Backend directory and configs exist, npm scripts run."
+    },
+    {
+      "id": "feeaabac-886f-463b-8f6e-a7c44f0fd422",
+      "name": "Backend: Directory Structure Setup",
+      "description": "Create src/ and subfolders: config, controllers, middleware, models, routes, services, utils, validations.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d9b80b92-fdc6-4a38-9e04-19ef2fea0c1a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/",
+          "type": "CREATE",
+          "description": "Backend source structure",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create src/ and all subfolders\n- Add index.ts entry point\n- Add placeholder files",
+      "verificationCriteria": "All folders and entry files exist."
+    },
+    {
+      "id": "56ee4546-b2bd-401d-9a34-94f18f25e333",
+      "name": "Backend: User Model",
+      "description": "Implement User Mongoose schema with validation, indexes, and methods.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "feeaabac-886f-463b-8f6e-a7c44f0fd422"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/models/User.ts",
+          "type": "CREATE",
+          "description": "User model",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create User.ts schema\n- Add validation, indexes, methods\n- Export model",
+      "verificationCriteria": "User model passes tests."
+    },
+    {
+      "id": "07d97f02-e7c7-4336-ad3c-572bfd77daf0",
+      "name": "Backend: User Validation",
+      "description": "Implement Joi validation for user registration, login, and profile update.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "56ee4546-b2bd-401d-9a34-94f18f25e333"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/validations/user.ts",
+          "type": "CREATE",
+          "description": "User validation",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create user validation schemas\n- Export validation functions",
+      "verificationCriteria": "User validation passes tests."
+    },
+    {
+      "id": "ecfb0c6d-537a-4b34-a50a-9adcb9737d3d",
+      "name": "Backend: Expense Model",
+      "description": "Implement Expense Mongoose schema with validation, indexes, and methods.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "feeaabac-886f-463b-8f6e-a7c44f0fd422"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/models/Expense.ts",
+          "type": "CREATE",
+          "description": "Expense model",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Expense.ts schema\n- Add validation, indexes, methods\n- Export model",
+      "verificationCriteria": "Expense model passes tests."
+    },
+    {
+      "id": "d2abdccc-38f2-4317-bf64-5cbaefe21cda",
+      "name": "Backend: Expense Validation",
+      "description": "Implement Joi validation for expense creation and update.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ecfb0c6d-537a-4b34-a50a-9adcb9737d3d"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/validations/expense.ts",
+          "type": "CREATE",
+          "description": "Expense validation",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create expense validation schemas\n- Export validation functions",
+      "verificationCriteria": "Expense validation passes tests."
+    },
+    {
+      "id": "b234b296-8669-417d-b1a9-4af70512a58a",
+      "name": "Backend: Category Model",
+      "description": "Implement Category Mongoose schema with validation, indexes, and methods.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "feeaabac-886f-463b-8f6e-a7c44f0fd422"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/models/Category.ts",
+          "type": "CREATE",
+          "description": "Category model",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Category.ts schema\n- Add validation, indexes, methods\n- Export model",
+      "verificationCriteria": "Category model passes tests."
+    },
+    {
+      "id": "9a3b00ae-e80c-4de6-b0e9-b609ad2fed1c",
+      "name": "Backend: Category Validation",
+      "description": "Implement Joi validation for category creation and update.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "b234b296-8669-417d-b1a9-4af70512a58a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/validations/category.ts",
+          "type": "CREATE",
+          "description": "Category validation",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create category validation schemas\n- Export validation functions",
+      "verificationCriteria": "Category validation passes tests."
+    },
+    {
+      "id": "3f86911c-8b0f-4fdb-9abf-bd12046aaf1e",
+      "name": "Backend: Auth Controller",
+      "description": "Implement registration, login, logout, JWT/refresh logic in authController.ts.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "56ee4546-b2bd-401d-9a34-94f18f25e333"
+        },
+        {
+          "taskId": "07d97f02-e7c7-4336-ad3c-572bfd77daf0"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/controllers/authController.ts",
+          "type": "CREATE",
+          "description": "Auth controller",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create authController.ts\n- Implement register, login, logout\n- Add JWT/refresh logic",
+      "verificationCriteria": "Auth endpoints work, JWT/refresh logic tested."
+    },
+    {
+      "id": "7e4436cb-e390-4aee-b33b-7cc1226259c7",
+      "name": "Backend: Auth Middleware",
+      "description": "Create JWT/role middleware for route protection.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "3f86911c-8b0f-4fdb-9abf-bd12046aaf1e"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/middleware/auth.ts",
+          "type": "CREATE",
+          "description": "Auth middleware",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Implement JWT verification\n- Add role-based access checks",
+      "verificationCriteria": "Middleware protects routes, passes tests."
+    },
+    {
+      "id": "8302c524-ba36-42fe-9215-e71ae006a71f",
+      "name": "Backend: Expense Controller",
+      "description": "CRUD endpoints for expenses with validation and error handling.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ecfb0c6d-537a-4b34-a50a-9adcb9737d3d"
+        },
+        {
+          "taskId": "d2abdccc-38f2-4317-bf64-5cbaefe21cda"
+        },
+        {
+          "taskId": "7e4436cb-e390-4aee-b33b-7cc1226259c7"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/controllers/expenseController.ts",
+          "type": "CREATE",
+          "description": "Expense controller",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create expenseController.ts\n- Implement CRUD logic\n- Add validation, error handling",
+      "verificationCriteria": "Expense endpoints work, pass tests."
+    },
+    {
+      "id": "2baf506b-e074-43ec-a760-26bb395eeda8",
+      "name": "Backend: Category Controller",
+      "description": "CRUD endpoints for categories with validation and error handling.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "b234b296-8669-417d-b1a9-4af70512a58a"
+        },
+        {
+          "taskId": "9a3b00ae-e80c-4de6-b0e9-b609ad2fed1c"
+        },
+        {
+          "taskId": "7e4436cb-e390-4aee-b33b-7cc1226259c7"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/controllers/categoryController.ts",
+          "type": "CREATE",
+          "description": "Category controller",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create categoryController.ts\n- Implement CRUD logic\n- Add validation, error handling",
+      "verificationCriteria": "Category endpoints work, pass tests."
+    },
+    {
+      "id": "588574c4-c13b-45b4-a4e9-b82e49fb366a",
+      "name": "Backend: User Controller",
+      "description": "Endpoints for user profile view/update, password change.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "56ee4546-b2bd-401d-9a34-94f18f25e333"
+        },
+        {
+          "taskId": "7e4436cb-e390-4aee-b33b-7cc1226259c7"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/controllers/userController.ts",
+          "type": "CREATE",
+          "description": "User controller",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create userController.ts\n- Implement profile CRUD\n- Add password change logic",
+      "verificationCriteria": "User profile endpoints work, pass tests."
+    },
+    {
+      "id": "60a986cf-9ac8-44e5-ad49-2e93ed3c056a",
+      "name": "Backend: Security Middleware",
+      "description": "Add validation, rate limiting, CORS, Helmet, and error middleware.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "8302c524-ba36-42fe-9215-e71ae006a71f"
+        },
+        {
+          "taskId": "2baf506b-e074-43ec-a760-26bb395eeda8"
+        },
+        {
+          "taskId": "588574c4-c13b-45b4-a4e9-b82e49fb366a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/src/middleware/validation.ts",
+          "type": "CREATE",
+          "description": "Validation middleware",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "backend/src/middleware/security.ts",
+          "type": "CREATE",
+          "description": "Security middleware",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "backend/src/middleware/error.ts",
+          "type": "CREATE",
+          "description": "Error middleware",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Implement validation middleware\n- Add rate limiting, CORS, Helmet\n- Add error handler",
+      "verificationCriteria": "All APIs secure, validated, error handling works."
+    },
+    {
+      "id": "43814dbc-ccce-43c6-84fb-64549650b1fe",
+      "name": "Backend: Unit Tests",
+      "description": "Write Jest/Mocha unit tests for models, controllers, middleware.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "60a986cf-9ac8-44e5-ad49-2e93ed3c056a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/tests/unit/",
+          "type": "CREATE",
+          "description": "Backend unit tests",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Add unit tests for all backend modules\n- Ensure high coverage",
+      "verificationCriteria": "All critical paths unit tested, CI passes."
+    },
+    {
+      "id": "1ccfffa2-68e3-4256-b265-ddba9fc2ef0f",
+      "name": "Backend: Integration Tests",
+      "description": "Write integration tests for backend API endpoints.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "60a986cf-9ac8-44e5-ad49-2e93ed3c056a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/tests/integration/",
+          "type": "CREATE",
+          "description": "Backend integration tests",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Add integration tests for all endpoints\n- Ensure high coverage",
+      "verificationCriteria": "All endpoints integration tested, CI passes."
+    },
+    {
+      "id": "4a6bf9fc-a1fe-4592-8c3f-230f787abc43",
+      "name": "Backend: Docker & Deployment",
+      "description": "Add Dockerfile, docker-compose, and deployment scripts for backend.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "43814dbc-ccce-43c6-84fb-64549650b1fe"
+        },
+        {
+          "taskId": "1ccfffa2-68e3-4256-b265-ddba9fc2ef0f"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "backend/Dockerfile",
+          "type": "CREATE",
+          "description": "Backend Dockerfile",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "docker-compose.yml",
+          "type": "CREATE",
+          "description": "Compose file",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Dockerfile\n- Add docker-compose service\n- Add build/start scripts",
+      "verificationCriteria": "Backend deploys via Docker, scripts work."
+    },
+    {
+      "id": "9cb5ad74-137f-4933-8ee8-e43e5e4e7abf",
+      "name": "Frontend: Project Initialization",
+      "description": "Create frontend directory, initialize React/TypeScript, install ESLint, Prettier, dotenv, and set up configs.",
+      "status": "pending",
+      "dependencies": [],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/package.json",
+          "type": "TO_MODIFY",
+          "description": "Frontend dependencies and scripts",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create frontend directory\n- Run npm init\n- Install React, TypeScript, ESLint, Prettier, dotenv\n- Create tsconfig.json and .env.example",
+      "verificationCriteria": "Frontend directory and configs exist, npm scripts run."
+    },
+    {
+      "id": "b412cb6b-5c10-4b9c-a9ca-0a19ccf6474c",
+      "name": "Frontend: Directory Structure Setup",
+      "description": "Create src/ and subfolders: components, contexts, hooks, pages, services, utils, styles.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "9cb5ad74-137f-4933-8ee8-e43e5e4e7abf"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/",
+          "type": "CREATE",
+          "description": "Frontend source structure",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create src/ and all subfolders\n- Add App.tsx, index.tsx\n- Add placeholder files",
+      "verificationCriteria": "All folders and entry files exist."
+    },
+    {
+      "id": "85d59383-eaab-4693-8c4a-94e1ec6f03b9",
+      "name": "Frontend: Auth Pages",
+      "description": "Implement Login.tsx and Register.tsx pages with form validation.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "b412cb6b-5c10-4b9c-a9ca-0a19ccf6474c"
+        },
+        {
+          "taskId": "3f86911c-8b0f-4fdb-9abf-bd12046aaf1e"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Login.tsx",
+          "type": "CREATE",
+          "description": "Login page",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "frontend/src/pages/Register.tsx",
+          "type": "CREATE",
+          "description": "Register page",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Login.tsx, Register.tsx\n- Add form validation with React Hook Form\n- Connect to backend auth API",
+      "verificationCriteria": "Auth pages work, validation enforced."
+    },
+    {
+      "id": "535a4046-8ed3-401b-b1bd-1662e7e0f32a",
+      "name": "Frontend: Auth Context & Hook",
+      "description": "Implement AuthContext and useAuth hook for managing user state and JWT.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "b412cb6b-5c10-4b9c-a9ca-0a19ccf6474c"
+        },
+        {
+          "taskId": "3f86911c-8b0f-4fdb-9abf-bd12046aaf1e"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/AuthContext.tsx",
+          "type": "CREATE",
+          "description": "Auth context",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "frontend/src/hooks/useAuth.ts",
+          "type": "CREATE",
+          "description": "Auth hook",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create AuthContext.tsx\n- Implement useAuth hook\n- Store JWT securely",
+      "verificationCriteria": "Auth context/hook manages user state, JWT securely."
+    },
+    {
+      "id": "892ab090-5220-48d4-a227-e086932dd740",
+      "name": "Frontend: Protected Route Component",
+      "description": "Implement ProtectedRoute component for route protection.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "535a4046-8ed3-401b-b1bd-1662e7e0f32a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/components/ProtectedRoute.tsx",
+          "type": "CREATE",
+          "description": "Protected route component",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create ProtectedRoute.tsx\n- Integrate with React Router\n- Test route protection",
+      "verificationCriteria": "Protected routes enforce auth."
+    },
+    {
+      "id": "03343249-8f74-4c35-8fcf-89c67cf88034",
+      "name": "Frontend: Expense Pages",
+      "description": "Build Expenses.tsx and ExpenseForm.tsx, connect to backend, manage state.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "892ab090-5220-48d4-a227-e086932dd740"
+        },
+        {
+          "taskId": "8302c524-ba36-42fe-9215-e71ae006a71f"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Expenses.tsx",
+          "type": "CREATE",
+          "description": "Expense list page",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "frontend/src/components/ExpenseForm.tsx",
+          "type": "CREATE",
+          "description": "Expense form component",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Expenses.tsx, ExpenseForm.tsx\n- Integrate with API services\n- Add state management",
+      "verificationCriteria": "Expense UI is functional, integrated with backend."
+    },
+    {
+      "id": "b61366ae-05f1-4109-a08b-3fa04afd7673",
+      "name": "Frontend: Category Pages",
+      "description": "Build Categories.tsx and CategoryForm.tsx, connect to backend, manage state.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "892ab090-5220-48d4-a227-e086932dd740"
+        },
+        {
+          "taskId": "2baf506b-e074-43ec-a760-26bb395eeda8"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Categories.tsx",
+          "type": "CREATE",
+          "description": "Category list page",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "frontend/src/components/CategoryForm.tsx",
+          "type": "CREATE",
+          "description": "Category form component",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Categories.tsx, CategoryForm.tsx\n- Integrate with API services\n- Add state management",
+      "verificationCriteria": "Category UI is functional, integrated with backend."
+    },
+    {
+      "id": "32a5a8dd-2d31-41a1-8a2e-2e8cf61b72b9",
+      "name": "Frontend: Profile Page",
+      "description": "Implement Profile.tsx for user info, update, and password change.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "892ab090-5220-48d4-a227-e086932dd740"
+        },
+        {
+          "taskId": "588574c4-c13b-45b4-a4e9-b82e49fb366a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Profile.tsx",
+          "type": "CREATE",
+          "description": "Profile page",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Profile.tsx\n- Add edit form\n- Integrate with backend user API",
+      "verificationCriteria": "Profile UI is functional, updates user info."
+    },
+    {
+      "id": "933e0131-603f-45fe-8d4f-be3556cb2644",
+      "name": "Frontend: Dashboard Page",
+      "description": "Implement Dashboard.tsx with charts, summaries, filters, export.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "03343249-8f74-4c35-8fcf-89c67cf88034"
+        },
+        {
+          "taskId": "b61366ae-05f1-4109-a08b-3fa04afd7673"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "type": "CREATE",
+          "description": "Dashboard page",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Dashboard.tsx\n- Integrate Chart.js\n- Add export/search/filter logic",
+      "verificationCriteria": "Dashboard displays correct data, supports export/filter."
+    },
+    {
+      "id": "3084cba1-43be-4dbf-a6c2-5002143091a8",
+      "name": "Frontend: Theme Context & Accessibility",
+      "description": "Implement ThemeContext, dark/light toggle, and accessibility features.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "b412cb6b-5c10-4b9c-a9ca-0a19ccf6474c"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/ThemeContext.tsx",
+          "type": "CREATE",
+          "description": "Theme context",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create ThemeContext.tsx\n- Implement toggle UI\n- Add ARIA/keyboard support",
+      "verificationCriteria": "Theme toggle and accessibility features work."
+    },
+    {
+      "id": "df4a1580-ef59-4464-9947-075bfd4149be",
+      "name": "Frontend: Unit Tests",
+      "description": "Write React Testing Library/Jest unit tests for components, hooks, pages.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "933e0131-603f-45fe-8d4f-be3556cb2644"
+        },
+        {
+          "taskId": "3084cba1-43be-4dbf-a6c2-5002143091a8"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/tests/unit/",
+          "type": "CREATE",
+          "description": "Frontend unit tests",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Add unit tests for all frontend modules\n- Ensure high coverage",
+      "verificationCriteria": "All critical paths unit tested, CI passes."
+    },
+    {
+      "id": "83d37e49-0fef-450c-8b63-316a3c4cee65",
+      "name": "Frontend: Integration Tests",
+      "description": "Write integration tests for frontend flows and API integration.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "933e0131-603f-45fe-8d4f-be3556cb2644"
+        },
+        {
+          "taskId": "3084cba1-43be-4dbf-a6c2-5002143091a8"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/tests/integration/",
+          "type": "CREATE",
+          "description": "Frontend integration tests",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Add integration tests for all flows\n- Ensure high coverage",
+      "verificationCriteria": "All flows integration tested, CI passes."
+    },
+    {
+      "id": "58d3703d-b7fb-41b6-85ad-e87c3391055a",
+      "name": "Frontend: Docker & Deployment",
+      "description": "Add Dockerfile, docker-compose, and deployment scripts for frontend.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "df4a1580-ef59-4464-9947-075bfd4149be"
+        },
+        {
+          "taskId": "83d37e49-0fef-450c-8b63-316a3c4cee65"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/Dockerfile",
+          "type": "CREATE",
+          "description": "Frontend Dockerfile",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "docker-compose.yml",
+          "type": "CREATE",
+          "description": "Compose file",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Create Dockerfile\n- Add docker-compose service\n- Add build/start scripts",
+      "verificationCriteria": "Frontend deploys via Docker, scripts work."
+    },
+    {
+      "id": "548cbc06-9960-4259-abe7-1fc4346bc823",
+      "name": "Docs & Sample Data",
+      "description": "Write/extend README, API docs, usage guides, and provide sample data scripts.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "4a6bf9fc-a1fe-4592-8c3f-230f787abc43"
+        },
+        {
+          "taskId": "58d3703d-b7fb-41b6-85ad-e87c3391055a"
+        }
+      ],
+      "createdAt": "2025-06-18T08:47:34.712Z",
+      "updatedAt": "2025-06-18T08:47:34.712Z",
+      "relatedFiles": [
+        {
+          "path": "README.md",
+          "type": "TO_MODIFY",
+          "description": "Project documentation",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "backend/docs/api.md",
+          "type": "CREATE",
+          "description": "API documentation",
+          "lineStart": 1,
+          "lineEnd": 100
+        },
+        {
+          "path": "backend/sample-data/seed.ts",
+          "type": "CREATE",
+          "description": "Sample data script",
+          "lineStart": 1,
+          "lineEnd": 100
+        }
+      ],
+      "implementationGuide": "- Update README\n- Add API docs (Swagger/Markdown)\n- Provide sample data scripts",
+      "verificationCriteria": "Docs are complete, sample data loads, usage is clear."
+    }
+  ]
+}
