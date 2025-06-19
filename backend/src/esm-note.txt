@@ -1,0 +1,1 @@
+This backend project is configured to use ES Modules (type: "module" in package.json). All code must use import/export syntax. Do not use CommonJS (require/module.exports).
