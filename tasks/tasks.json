@@ -24,7 +24,7 @@
     {
       "id": "e209d313-88e5-41fe-9041-f750acae4bbc",
       "name": "Backend: User Model & Auth (ES Modules)",
-      "description": "Implement User model, registration, login, JWT auth, password hashing, and profile endpoints. Add note: This is using ES Module not commonJS. Depends on backend project structure.",
+      "description": "Implement User model, registration, login, JWT auth, password hashing, and profile endpoints. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on backend project structure.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -33,12 +33,11 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.111Z",
-      "updatedAt": "2025-06-19T11:07:05.930Z",
+      "updatedAt": "2025-06-19T12:15:27.408Z",
       "relatedFiles": [
         {
-          "path": "backend/src/models/User.ts",
-          "type": "CREATE",
-          "description": "User model (Mongoose, ESM)"
+          "path": "backend/src/models/User.js",
+          "type": "CREATE"
         }
       ],
       "implementationGuide": "- Create User model (Mongoose, ESM)\n- Auth routes: register, login, get current user, update profile\n- Use bcryptjs, JWT, Joi\n- Add tests for all endpoints\n- Add note: ES Modules only\n- Security: hash passwords, validate input, rate limit, sanitize, helmet, CORS\n- Error handling middleware.",
@@ -47,7 +46,7 @@
     {
       "id": "68d1c8fd-70f3-4b08-8a4c-8272c8c561d3",
       "name": "Backend: Transaction Model & CRUD (ES Modules)",
-      "description": "Implement Transaction model, CRUD routes, validation, and tests. Add note: This is using ES Module not commonJS. Depends on backend structure and user/auth implementation.",
+      "description": "Implement Transaction model, CRUD routes, validation, and tests. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on backend structure and user/auth implementation.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -59,12 +58,11 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.111Z",
-      "updatedAt": "2025-06-19T11:07:12.430Z",
+      "updatedAt": "2025-06-19T12:15:28.383Z",
       "relatedFiles": [
         {
-          "path": "backend/src/models/Transaction.ts",
-          "type": "CREATE",
-          "description": "Transaction model (Mongoose, ESM)"
+          "path": "backend/src/models/Transaction.js",
+          "type": "CREATE"
         }
       ],
       "implementationGuide": "- Create Transaction model (Mongoose, ESM)\n- CRUD routes: get all, get one, create, update, delete\n- Stats endpoint\n- Input validation (Joi)\n- Auth middleware\n- Tests for all endpoints\n- Security: sanitize, validate, error handling\n- Add note: ES Modules only.",
@@ -73,7 +71,7 @@
     {
       "id": "6d4d74ab-25a4-47b6-aa12-308b3a6327cf",
       "name": "Backend: Budget Model & CRUD (ES Modules)",
-      "description": "Implement Budget model, CRUD routes, progress endpoint, validation, and tests. Add note: This is using ES Module not commonJS. Depends on backend structure and user/auth implementation.",
+      "description": "Implement Budget model, CRUD routes, progress endpoint, validation, and tests. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on backend structure and user/auth implementation.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -85,12 +83,11 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.111Z",
-      "updatedAt": "2025-06-19T11:07:16.897Z",
+      "updatedAt": "2025-06-19T12:15:29.307Z",
       "relatedFiles": [
         {
-          "path": "backend/src/models/Budget.ts",
-          "type": "CREATE",
-          "description": "Budget model (Mongoose, ESM)"
+          "path": "backend/src/models/Budget.js",
+          "type": "CREATE"
         }
       ],
       "implementationGuide": "- Create Budget model (Mongoose, ESM)\n- CRUD routes: get all, create, update, delete\n- Progress endpoint\n- Input validation (Joi)\n- Auth middleware\n- Tests for all endpoints\n- Security: sanitize, validate, error handling\n- Add note: ES Modules only.",
@@ -99,7 +96,7 @@
     {
       "id": "a3f2b8eb-c2d0-44d9-8449-7f9a0e834165",
       "name": "Backend: Category Model & CRUD (ES Modules)",
-      "description": "Implement Category model, CRUD routes, validation, and tests. Add note: This is using ES Module not commonJS. Depends on backend structure and user/auth implementation.",
+      "description": "Implement Category model, CRUD routes, validation, and tests. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on backend structure and user/auth implementation.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -111,12 +108,11 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.111Z",
-      "updatedAt": "2025-06-19T11:07:21.003Z",
+      "updatedAt": "2025-06-19T12:15:30.295Z",
       "relatedFiles": [
         {
-          "path": "backend/src/models/Category.ts",
-          "type": "CREATE",
-          "description": "Category model (Mongoose, ESM)"
+          "path": "backend/src/models/Category.js",
+          "type": "CREATE"
         }
       ],
       "implementationGuide": "- Create Category model (Mongoose, ESM)\n- CRUD routes: get all, create, update, delete\n- Input validation (Joi)\n- Auth middleware\n- Tests for all endpoints\n- Security: sanitize, validate, error handling\n- Add note: ES Modules only.",
@@ -125,7 +121,7 @@
     {
       "id": "b16cd470-6f83-43b6-b940-e23551ffdbcd",
       "name": "Backend: Account Model & CRUD (ES Modules)",
-      "description": "Implement Account model, CRUD routes, validation, and tests. Add note: This is using ES Module not commonJS. Depends on backend structure and user/auth implementation.",
+      "description": "Implement Account model, CRUD routes, validation, and tests. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on backend structure and user/auth implementation.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -137,12 +133,11 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.111Z",
-      "updatedAt": "2025-06-19T11:07:27.682Z",
+      "updatedAt": "2025-06-19T12:15:31.094Z",
       "relatedFiles": [
         {
-          "path": "backend/src/models/Account.ts",
-          "type": "CREATE",
-          "description": "Account model (Mongoose, ESM)"
+          "path": "backend/src/models/Account.js",
+          "type": "CREATE"
         }
       ],
       "implementationGuide": "- Create Account model (Mongoose, ESM)\n- CRUD routes: get all, create, update, delete\n- Input validation (Joi)\n- Auth middleware\n- Tests for all endpoints\n- Security: sanitize, validate, error handling\n- Add note: ES Modules only.",
@@ -151,7 +146,7 @@
     {
       "id": "bc3895f5-54d5-4389-9f0b-2715cf3b85cc",
       "name": "Backend: Reports & Export (ES Modules)",
-      "description": "Implement reports endpoints (summary, monthly, yearly, export), validation, and tests. Add note: This is using ES Module not commonJS. Depends on all model CRUD implementations.",
+      "description": "Implement reports endpoints (summary, monthly, yearly, export), validation, and tests. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on all model CRUD implementations.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -175,7 +170,7 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.111Z",
-      "updatedAt": "2025-06-19T11:07:36.155Z",
+      "updatedAt": "2025-06-19T12:15:31.826Z",
       "relatedFiles": [
         {
           "path": "backend/src/routes/reports.ts",
@@ -189,7 +184,7 @@
     {
       "id": "b060ce87-839e-4fba-9cf5-10f5d91e6ec1",
       "name": "Backend: Recurring Transactions & Cron (ES Modules)",
-      "description": "Implement recurring transaction logic and node-cron jobs. Add note: This is using ES Module not commonJS. Depends on Transaction model CRUD.",
+      "description": "Implement recurring transaction logic and node-cron jobs. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on Transaction model CRUD.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -198,7 +193,7 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.111Z",
-      "updatedAt": "2025-06-19T11:07:45.857Z",
+      "updatedAt": "2025-06-19T12:15:32.589Z",
       "relatedFiles": [
         {
           "path": "backend/src/services/recurring.ts",
@@ -212,7 +207,7 @@
     {
       "id": "f9b0a3e8-3d12-4255-ada0-ba063a825df0",
       "name": "Backend: Security & Middleware (ES Modules)",
-      "description": "Implement security middleware: helmet, CORS, rate limiting, input sanitization, error handler. Add note: This is using ES Module not commonJS. Depends on backend structure.",
+      "description": "Implement security middleware: helmet, CORS, rate limiting, input sanitization, error handler. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on backend structure.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -221,7 +216,7 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:07:50.824Z",
+      "updatedAt": "2025-06-19T12:15:33.799Z",
       "relatedFiles": [
         {
           "path": "backend/src/middleware/security.ts",
@@ -235,7 +230,7 @@
     {
       "id": "3c2da2be-ca6f-48f7-866e-2ebe5a70652a",
       "name": "Backend: Integration & E2E Tests (ES Modules)",
-      "description": "Write integration and E2E tests for all backend routes and features. Add note: This is using ES Module not commonJS. Depends on all backend features and middleware.",
+      "description": "Write integration and E2E tests for all backend routes and features. ES Modules, JavaScript only (.js), Typescript forbidden. Depends on all backend features and middleware.",
       "notes": "This is using ES Module not commonJS.",
       "status": "pending",
       "dependencies": [
@@ -265,7 +260,7 @@
         }
       ],
       "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:08:08.377Z",
+      "updatedAt": "2025-06-19T12:15:34.960Z",
       "relatedFiles": [
         {
           "path": "backend/tests/",
