@@ -290,268 +290,6 @@
       "completedAt": "2025-06-20T11:27:26.234Z"
     },
     {
-      "id": "269dd48a-08ea-41a9-81fa-de47882d227c",
-      "name": "Frontend: Setup Project & API Service",
-      "description": "Initialize React project, setup API service for backend usage, configure .env, and test connection. Depends on backend structure.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "7ab8913d-ba85-4285-a033-b18bd5a4ccf3"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:08:42.481Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/services/api.ts",
-          "type": "CREATE",
-          "description": "API service for backend communication."
-        }
-      ],
-      "implementationGuide": "- Create API service (Axios, TypeScript)\n- Configure .env for API URL\n- Test backend connection\n- Setup folder structure as per project guide.",
-      "verificationCriteria": "API service works, backend reachable."
-    },
-    {
-      "id": "fe338ebf-d41a-4539-8a6f-c37d13f6c99b",
-      "name": "Frontend: Auth Pages & Context",
-      "description": "Implement login, register, profile pages, and Auth context. Connect to backend endpoints. Depends on frontend API service and backend user/auth implementation.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "269dd48a-08ea-41a9-81fa-de47882d227c"
-        },
-        {
-          "taskId": "e209d313-88e5-41fe-9041-f750acae4bbc"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:08:48.961Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/pages/Auth/",
-          "type": "TO_MODIFY",
-          "description": "Auth pages and context."
-        }
-      ],
-      "implementationGuide": "- Create login, register, profile pages\n- Auth context (React Context + useReducer)\n- Connect to backend\n- Form validation (React Hook Form)\n- Error handling\n- Responsive design.",
-      "verificationCriteria": "Auth pages and context work, backend integration complete."
-    },
-    {
-      "id": "c476b72d-d2a3-40c0-b326-0ca214ef1fe1",
-      "name": "Frontend: Transaction Pages & Context",
-      "description": "Implement transaction list, details, create/edit forms, and Transaction context. Connect to backend endpoints. Depends on frontend API service and backend transaction CRUD.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "269dd48a-08ea-41a9-81fa-de47882d227c"
-        },
-        {
-          "taskId": "68d1c8fd-70f3-4b08-8a4c-8272c8c561d3"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:08:53.811Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/pages/Transactions/",
-          "type": "TO_MODIFY",
-          "description": "Transaction pages and context."
-        }
-      ],
-      "implementationGuide": "- Transaction list, details, create/edit forms\n- Transaction context (React Context + useReducer)\n- Connect to backend\n- Form validation\n- Responsive design.",
-      "verificationCriteria": "Transaction pages and context work, backend integration complete."
-    },
-    {
-      "id": "0bccca63-a212-40ea-96cc-11694bf5a3a9",
-      "name": "Frontend: Budget Pages & Context",
-      "description": "Implement budget list, details, create/edit forms, and Budget context. Connect to backend endpoints. Depends on frontend API service and backend budget CRUD.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "269dd48a-08ea-41a9-81fa-de47882d227c"
-        },
-        {
-          "taskId": "6d4d74ab-25a4-47b6-aa12-308b3a6327cf"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:08:59.487Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/pages/Budgets/",
-          "type": "TO_MODIFY",
-          "description": "Budget pages and context."
-        }
-      ],
-      "implementationGuide": "- Budget list, details, create/edit forms\n- Budget context (React Context + useReducer)\n- Connect to backend\n- Form validation\n- Responsive design.",
-      "verificationCriteria": "Budget pages and context work, backend integration complete."
-    },
-    {
-      "id": "195a6bb6-3e6b-489f-950c-37c1a336ea6e",
-      "name": "Frontend: Category Pages & Context",
-      "description": "Implement category list, details, create/edit forms, and Category context. Connect to backend endpoints. Depends on frontend API service and backend category CRUD.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "269dd48a-08ea-41a9-81fa-de47882d227c"
-        },
-        {
-          "taskId": "a3f2b8eb-c2d0-44d9-8449-7f9a0e834165"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:09:05.386Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/pages/Categories/",
-          "type": "TO_MODIFY",
-          "description": "Category pages and context."
-        }
-      ],
-      "implementationGuide": "- Category list, details, create/edit forms\n- Category context (React Context + useReducer)\n- Connect to backend\n- Form validation\n- Responsive design.",
-      "verificationCriteria": "Category pages and context work, backend integration complete."
-    },
-    {
-      "id": "19f5a87c-f660-4dcb-b0b5-daabb0ab92b4",
-      "name": "Frontend: Account Pages & Context",
-      "description": "Implement account list, details, create/edit forms, and Account context. Connect to backend endpoints. Depends on frontend API service and backend account CRUD.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "269dd48a-08ea-41a9-81fa-de47882d227c"
-        },
-        {
-          "taskId": "b16cd470-6f83-43b6-b940-e23551ffdbcd"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:09:11.026Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/pages/Accounts/",
-          "type": "TO_MODIFY",
-          "description": "Account pages and context."
-        }
-      ],
-      "implementationGuide": "- Account list, details, create/edit forms\n- Account context (React Context + useReducer)\n- Connect to backend\n- Form validation\n- Responsive design.",
-      "verificationCriteria": "Account pages and context work, backend integration complete."
-    },
-    {
-      "id": "35227b25-0546-4f17-bdf1-7ebbc42898e4",
-      "name": "Frontend: Dashboard & Reports Pages",
-      "description": "Implement dashboard, charts, and reports pages. Connect to backend endpoints. Depends on frontend API service and backend reports implementation.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "269dd48a-08ea-41a9-81fa-de47882d227c"
-        },
-        {
-          "taskId": "bc3895f5-54d5-4389-9f0b-2715cf3b85cc"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:09:16.052Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/pages/Dashboard/",
-          "type": "TO_MODIFY",
-          "description": "Dashboard and reports pages."
-        }
-      ],
-      "implementationGuide": "- Dashboard with charts (Chart.js)\n- Reports pages (summary, monthly, yearly, export)\n- Connect to backend\n- Responsive design\n- Accessibility.",
-      "verificationCriteria": "Dashboard and reports pages work, backend integration complete."
-    },
-    {
-      "id": "26396d4d-ab57-4021-9d71-59bf109faaf2",
-      "name": "Frontend: Recurring Transactions UI",
-      "description": "Implement UI for recurring transactions setup and management. Connect to backend endpoints. Depends on transaction UI and backend recurring logic.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "c476b72d-d2a3-40c0-b326-0ca214ef1fe1"
-        },
-        {
-          "taskId": "b060ce87-839e-4fba-9cf5-10f5d91e6ec1"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:09:26.275Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/pages/Transactions/",
-          "type": "TO_MODIFY",
-          "description": "Recurring transaction UI."
-        }
-      ],
-      "implementationGuide": "- Recurring transaction forms\n- Connect to backend\n- Responsive design.",
-      "verificationCriteria": "Recurring transaction UI works, backend integration complete."
-    },
-    {
-      "id": "2c6323eb-8136-45e3-a6f6-fb587a51decd",
-      "name": "Frontend: Theme & Accessibility",
-      "description": "Implement dark/light theme toggle and accessibility features. Depends on frontend setup.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "269dd48a-08ea-41a9-81fa-de47882d227c"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:09:34.561Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/contexts/ThemeContext.tsx",
-          "type": "CREATE",
-          "description": "Theme context and accessibility features."
-        }
-      ],
-      "implementationGuide": "- Theme context\n- Toggle button\n- Accessibility (ARIA, keyboard nav, semantic HTML)\n- Responsive design.",
-      "verificationCriteria": "Theme toggle and accessibility features work."
-    },
-    {
-      "id": "da09906a-b494-4a0d-a8ce-e889363d9e72",
-      "name": "Frontend: Integration & E2E Tests",
-      "description": "Write integration and E2E tests for all frontend pages and features. Depends on all frontend features and UI.",
-      "status": "pending",
-      "dependencies": [
-        {
-          "taskId": "fe338ebf-d41a-4539-8a6f-c37d13f6c99b"
-        },
-        {
-          "taskId": "c476b72d-d2a3-40c0-b326-0ca214ef1fe1"
-        },
-        {
-          "taskId": "0bccca63-a212-40ea-96cc-11694bf5a3a9"
-        },
-        {
-          "taskId": "195a6bb6-3e6b-489f-950c-37c1a336ea6e"
-        },
-        {
-          "taskId": "19f5a87c-f660-4dcb-b0b5-daabb0ab92b4"
-        },
-        {
-          "taskId": "35227b25-0546-4f17-bdf1-7ebbc42898e4"
-        },
-        {
-          "taskId": "26396d4d-ab57-4021-9d71-59bf109faaf2"
-        },
-        {
-          "taskId": "2c6323eb-8136-45e3-a6f6-fb587a51decd"
-        }
-      ],
-      "createdAt": "2025-06-19T11:06:10.112Z",
-      "updatedAt": "2025-06-19T11:09:41.170Z",
-      "relatedFiles": [
-        {
-          "path": "frontend/src/__tests__/",
-          "type": "TO_MODIFY",
-          "description": "Frontend integration and E2E tests."
-        }
-      ],
-      "implementationGuide": "- Use Jest, React Testing Library\n- Test all pages, components, and API integration.",
-      "verificationCriteria": "All tests pass."
-    },
-    {
       "id": "45b69f1c-46dc-4c28-b46c-1825c3cba6c0",
       "name": "Postman: Auth Collection",
       "description": "Create Postman collection for all auth endpoints. Link with latest backend tasks. Depends on backend user/auth implementation.",
@@ -694,6 +432,625 @@
       "verificationCriteria": "All reports endpoints covered in Postman.",
       "summary": "All reports endpoints (summary, monthly, yearly, export) are included in the generated Postman collection. The collection is documented, uses variables for baseUrl and token, and matches the latest backend API. File: backend/postman/Reports.postman_collection.json. Ready for use.",
       "completedAt": "2025-06-20T10:55:20.874Z"
+    },
+    {
+      "id": "ffb49a4f-6c48-45c9-b095-769514ab996f",
+      "name": "Frontend: Setup Project & API Service",
+      "description": "Initialize React project, configure TypeScript, setup API service for backend usage, configure .env, test connection, and set up ESLint/Prettier/JSDoc/Jest. Create base folder structure (src/components, pages, contexts, services, utils, hooks, theme, assets, tests, common).",
+      "status": "completed",
+      "dependencies": [],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:57:51.809Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/package.json",
+          "type": "TO_MODIFY",
+          "description": "Frontend project configuration and dependencies."
+        }
+      ],
+      "implementationGuide": "1. Create React app with TypeScript. 2. Setup .env for API base URL. 3. Implement API service (Axios) with error handling and token support. 4. Configure ESLint, Prettier, JSDoc, Jest. 5. Scaffold src/ structure. 6. Test backend connection.",
+      "verificationCriteria": "Project runs, API service works, lint/test/docs pass, folder structure matches standards.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc.",
+      "summary": "Frontend project setup, API service, .env, ESLint, Prettier, Jest, and JSDoc are installed. Folder structure matches standards. Project builds successfully. Task complete.",
+      "completedAt": "2025-06-20T11:57:51.808Z"
+    },
+    {
+      "id": "1b34cb81-9ab0-4f8d-8a71-4d93ce954c23",
+      "name": "Frontend: Auth Pages - Login UI",
+      "description": "Implement Login page UI with React Hook Form, Bootstrap 5, and accessibility. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ffb49a4f-6c48-45c9-b095-769514ab996f"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Login.tsx",
+          "type": "CREATE",
+          "description": "Login page component (TypeScript, form, validation, accessibility)."
+        }
+      ],
+      "implementationGuide": "1. Create Login page in pages/. 2. Use React Hook Form for validation. 3. Style with Bootstrap 5. 4. Ensure accessibility (labels, ARIA, tab order). 5. Add JSDoc.",
+      "verificationCriteria": "Login page renders, form validates, accessible, matches design.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "4a66b0e0-7d62-4695-ae68-fa52635cec18",
+      "name": "Frontend: Auth Pages - Register UI",
+      "description": "Implement Register page UI with React Hook Form, Bootstrap 5, and accessibility. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ffb49a4f-6c48-45c9-b095-769514ab996f"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Register.tsx",
+          "type": "CREATE",
+          "description": "Register page component (TypeScript, form, validation, accessibility)."
+        }
+      ],
+      "implementationGuide": "1. Create Register page in pages/. 2. Use React Hook Form for validation. 3. Style with Bootstrap 5. 4. Ensure accessibility. 5. Add JSDoc.",
+      "verificationCriteria": "Register page renders, form validates, accessible, matches design.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "d2a1a2be-f1ff-4a7f-8d2a-8856773ba077",
+      "name": "Frontend: Auth Context & API Integration",
+      "description": "Implement AuthContext (login, register, logout, user state), integrate with backend API, handle JWT, errors, and loading. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "1b34cb81-9ab0-4f8d-8a71-4d93ce954c23"
+        },
+        {
+          "taskId": "4a66b0e0-7d62-4695-ae68-fa52635cec18"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/AuthContext.tsx",
+          "type": "CREATE",
+          "description": "Authentication context for user state and API integration."
+        }
+      ],
+      "implementationGuide": "1. Create AuthContext in contexts/. 2. Implement login/register/logout methods using API service. 3. Store JWT securely. 4. Handle errors/loading. 5. Add JSDoc and tests.",
+      "verificationCriteria": "AuthContext provides login/register/logout, JWT handled, errors managed, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "cd43e6a9-1379-428d-91bd-a91f4000af9b",
+      "name": "Frontend: Auth Pages - Profile UI",
+      "description": "Implement Profile page UI, connect to AuthContext, display/update user info, handle errors. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d2a1a2be-f1ff-4a7f-8d2a-8856773ba077"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Profile.tsx",
+          "type": "CREATE",
+          "description": "Profile page component for user info and update form."
+        }
+      ],
+      "implementationGuide": "1. Create Profile page in pages/. 2. Use AuthContext for user data. 3. Implement update form with validation. 4. Handle errors/loading. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Profile page renders, updates user info, handles errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "c2bdb3f4-4778-4360-bca5-2fbfcab609ca",
+      "name": "Frontend: Transaction Pages - List UI",
+      "description": "Implement Transaction list page UI, fetch from backend, display with filters/sorting, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d2a1a2be-f1ff-4a7f-8d2a-8856773ba077"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/TransactionList.tsx",
+          "type": "CREATE",
+          "description": "Transaction list page for displaying and filtering transactions."
+        }
+      ],
+      "implementationGuide": "1. Create TransactionList page in pages/. 2. Fetch transactions via API service. 3. Add filters/sorting. 4. Style with Bootstrap 5. 5. Ensure accessibility. 6. Add JSDoc and tests.",
+      "verificationCriteria": "Transaction list renders, fetches data, filters/sorts, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "f65f2db9-db34-4e57-acf4-60fc051f7b61",
+      "name": "Frontend: Transaction Pages - Details UI",
+      "description": "Implement Transaction details page UI, fetch single transaction, display details, handle errors. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "c2bdb3f4-4778-4360-bca5-2fbfcab609ca"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/TransactionDetails.tsx",
+          "type": "CREATE",
+          "description": "Transaction details page for viewing a single transaction."
+        }
+      ],
+      "implementationGuide": "1. Create TransactionDetails page in pages/. 2. Fetch transaction by ID. 3. Display details. 4. Handle errors/loading. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Transaction details page renders, fetches data, handles errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "ce35a30f-260e-4215-97e8-3a0b1ffe82c5",
+      "name": "Frontend: Transaction Pages - Create/Edit UI",
+      "description": "Implement Transaction create/edit form UI, use React Hook Form, validation, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "c2bdb3f4-4778-4360-bca5-2fbfcab609ca"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/components/TransactionForm.tsx",
+          "type": "CREATE",
+          "description": "Transaction form component for create/edit functionality."
+        }
+      ],
+      "implementationGuide": "1. Create TransactionForm component in components/. 2. Use React Hook Form for validation. 3. Style with Bootstrap 5. 4. Ensure accessibility. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Transaction form renders, validates, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "c9e77334-ac26-4154-95c6-89c7d7122fd8",
+      "name": "Frontend: Transaction Context & API Integration",
+      "description": "Implement TransactionContext (CRUD), integrate with backend API, manage state, errors, loading. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ce35a30f-260e-4215-97e8-3a0b1ffe82c5"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/TransactionContext.tsx",
+          "type": "CREATE",
+          "description": "Transaction context for CRUD and state management."
+        }
+      ],
+      "implementationGuide": "1. Create TransactionContext in contexts/. 2. Implement CRUD methods using API service. 3. Manage state/errors/loading. 4. Add JSDoc and tests.",
+      "verificationCriteria": "TransactionContext provides CRUD, manages state/errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "87409b85-6186-4f14-ab9d-2346b21e2334",
+      "name": "Frontend: Budget Pages - List UI",
+      "description": "Implement Budget list page UI, fetch from backend, display with filters/sorting, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d2a1a2be-f1ff-4a7f-8d2a-8856773ba077"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/BudgetList.tsx",
+          "type": "CREATE",
+          "description": "Budget list page for displaying and filtering budgets."
+        }
+      ],
+      "implementationGuide": "1. Create BudgetList page in pages/. 2. Fetch budgets via API service. 3. Add filters/sorting. 4. Style with Bootstrap 5. 5. Ensure accessibility. 6. Add JSDoc and tests.",
+      "verificationCriteria": "Budget list renders, fetches data, filters/sorts, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "985bc93a-6c91-4aef-9c7b-b19be2ca7d7d",
+      "name": "Frontend: Budget Pages - Details UI",
+      "description": "Implement Budget details page UI, fetch single budget, display details, handle errors. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "87409b85-6186-4f14-ab9d-2346b21e2334"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/BudgetDetails.tsx",
+          "type": "CREATE",
+          "description": "Budget details page for viewing a single budget."
+        }
+      ],
+      "implementationGuide": "1. Create BudgetDetails page in pages/. 2. Fetch budget by ID. 3. Display details. 4. Handle errors/loading. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Budget details page renders, fetches data, handles errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "ad5879eb-37ce-4166-945c-29ac49013224",
+      "name": "Frontend: Budget Pages - Create/Edit UI",
+      "description": "Implement Budget create/edit form UI, use React Hook Form, validation, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "87409b85-6186-4f14-ab9d-2346b21e2334"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/components/BudgetForm.tsx",
+          "type": "CREATE",
+          "description": "Budget form component for create/edit functionality."
+        }
+      ],
+      "implementationGuide": "1. Create BudgetForm component in components/. 2. Use React Hook Form for validation. 3. Style with Bootstrap 5. 4. Ensure accessibility. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Budget form renders, validates, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "5e8b61fa-5854-45eb-ab1c-131773191bf1",
+      "name": "Frontend: Budget Context & API Integration",
+      "description": "Implement BudgetContext (CRUD), integrate with backend API, manage state, errors, loading. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ad5879eb-37ce-4166-945c-29ac49013224"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/BudgetContext.tsx",
+          "type": "CREATE",
+          "description": "Budget context for CRUD and state management."
+        }
+      ],
+      "implementationGuide": "1. Create BudgetContext in contexts/. 2. Implement CRUD methods using API service. 3. Manage state/errors/loading. 4. Add JSDoc and tests.",
+      "verificationCriteria": "BudgetContext provides CRUD, manages state/errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "a5eeb018-2a3e-44ff-8ecc-02b2ed200a1b",
+      "name": "Frontend: Category Pages - List UI",
+      "description": "Implement Category list page UI, fetch from backend, display with filters/sorting, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d2a1a2be-f1ff-4a7f-8d2a-8856773ba077"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/CategoryList.tsx",
+          "type": "CREATE",
+          "description": "Category list page for displaying and filtering categories."
+        }
+      ],
+      "implementationGuide": "1. Create CategoryList page in pages/. 2. Fetch categories via API service. 3. Add filters/sorting. 4. Style with Bootstrap 5. 5. Ensure accessibility. 6. Add JSDoc and tests.",
+      "verificationCriteria": "Category list renders, fetches data, filters/sorts, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "89361823-6283-45a4-82e4-48854d2f88ed",
+      "name": "Frontend: Category Pages - Details UI",
+      "description": "Implement Category details page UI, fetch single category, display details, handle errors. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "a5eeb018-2a3e-44ff-8ecc-02b2ed200a1b"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/CategoryDetails.tsx",
+          "type": "CREATE",
+          "description": "Category details page for viewing a single category."
+        }
+      ],
+      "implementationGuide": "1. Create CategoryDetails page in pages/. 2. Fetch category by ID. 3. Display details. 4. Handle errors/loading. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Category details page renders, fetches data, handles errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "6093177c-0449-4f2c-9ab9-d85e7ec807f8",
+      "name": "Frontend: Category Pages - Create/Edit UI",
+      "description": "Implement Category create/edit form UI, use React Hook Form, validation, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "a5eeb018-2a3e-44ff-8ecc-02b2ed200a1b"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/components/CategoryForm.tsx",
+          "type": "CREATE",
+          "description": "Category form component for create/edit functionality."
+        }
+      ],
+      "implementationGuide": "1. Create CategoryForm component in components/. 2. Use React Hook Form for validation. 3. Style with Bootstrap 5. 4. Ensure accessibility. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Category form renders, validates, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "41136c99-330c-4ce4-a828-8ec698dd2d1a",
+      "name": "Frontend: Category Context & API Integration",
+      "description": "Implement CategoryContext (CRUD), integrate with backend API, manage state, errors, loading. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "6093177c-0449-4f2c-9ab9-d85e7ec807f8"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/CategoryContext.tsx",
+          "type": "CREATE",
+          "description": "Category context for CRUD and state management."
+        }
+      ],
+      "implementationGuide": "1. Create CategoryContext in contexts/. 2. Implement CRUD methods using API service. 3. Manage state/errors/loading. 4. Add JSDoc and tests.",
+      "verificationCriteria": "CategoryContext provides CRUD, manages state/errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "0f9cdfc3-c55d-4f5f-ac94-bc324cd8b08a",
+      "name": "Frontend: Account Pages - List UI",
+      "description": "Implement Account list page UI, fetch from backend, display with filters/sorting, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d2a1a2be-f1ff-4a7f-8d2a-8856773ba077"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/AccountList.tsx",
+          "type": "CREATE",
+          "description": "Account list page for displaying and filtering accounts."
+        }
+      ],
+      "implementationGuide": "1. Create AccountList page in pages/. 2. Fetch accounts via API service. 3. Add filters/sorting. 4. Style with Bootstrap 5. 5. Ensure accessibility. 6. Add JSDoc and tests.",
+      "verificationCriteria": "Account list renders, fetches data, filters/sorts, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "869e4d19-4d07-421b-bae6-3ef974678b50",
+      "name": "Frontend: Account Pages - Details UI",
+      "description": "Implement Account details page UI, fetch single account, display details, handle errors. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "0f9cdfc3-c55d-4f5f-ac94-bc324cd8b08a"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/AccountDetails.tsx",
+          "type": "CREATE",
+          "description": "Account details page for viewing a single account."
+        }
+      ],
+      "implementationGuide": "1. Create AccountDetails page in pages/. 2. Fetch account by ID. 3. Display details. 4. Handle errors/loading. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Account details page renders, fetches data, handles errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "77ea9f39-e166-4634-81c2-9211d15d0d66",
+      "name": "Frontend: Account Pages - Create/Edit UI",
+      "description": "Implement Account create/edit form UI, use React Hook Form, validation, Bootstrap 5, accessible. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "0f9cdfc3-c55d-4f5f-ac94-bc324cd8b08a"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/components/AccountForm.tsx",
+          "type": "CREATE",
+          "description": "Account form component for create/edit functionality."
+        }
+      ],
+      "implementationGuide": "1. Create AccountForm component in components/. 2. Use React Hook Form for validation. 3. Style with Bootstrap 5. 4. Ensure accessibility. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Account form renders, validates, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "c308dfef-4d23-4638-bd45-e092e13557b0",
+      "name": "Frontend: Account Context & API Integration",
+      "description": "Implement AccountContext (CRUD), integrate with backend API, manage state, errors, loading. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "77ea9f39-e166-4634-81c2-9211d15d0d66"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/AccountContext.tsx",
+          "type": "CREATE",
+          "description": "Account context for CRUD and state management."
+        }
+      ],
+      "implementationGuide": "1. Create AccountContext in contexts/. 2. Implement CRUD methods using API service. 3. Manage state/errors/loading. 4. Add JSDoc and tests.",
+      "verificationCriteria": "AccountContext provides CRUD, manages state/errors, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "a12076f2-656d-417b-b8c6-71e57b880d76",
+      "name": "Frontend: Dashboard & Reports Pages",
+      "description": "Implement dashboard, charts, and reports pages. Fetch data from backend, visualize with Chart.js, ensure accessibility. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "d2a1a2be-f1ff-4a7f-8d2a-8856773ba077"
+        },
+        {
+          "taskId": "c9e77334-ac26-4154-95c6-89c7d7122fd8"
+        },
+        {
+          "taskId": "5e8b61fa-5854-45eb-ab1c-131773191bf1"
+        },
+        {
+          "taskId": "41136c99-330c-4ce4-a828-8ec698dd2d1a"
+        },
+        {
+          "taskId": "c308dfef-4d23-4638-bd45-e092e13557b0"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "type": "CREATE",
+          "description": "Dashboard page for financial overview and charts."
+        },
+        {
+          "path": "frontend/src/pages/Reports.tsx",
+          "type": "CREATE",
+          "description": "Reports page for financial data visualization and export."
+        }
+      ],
+      "implementationGuide": "1. Create Dashboard and Reports pages in pages/. 2. Fetch data via API service. 3. Visualize with Chart.js. 4. Ensure accessibility. 5. Add JSDoc and tests.",
+      "verificationCriteria": "Dashboard and reports pages render, fetch data, visualize, accessible, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "c05cdc2a-8a32-407c-823b-85e40590244b",
+      "name": "Frontend: Recurring Transactions UI",
+      "description": "Implement UI for recurring transactions setup and management. Integrate with TransactionContext and backend. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "c9e77334-ac26-4154-95c6-89c7d7122fd8"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/pages/RecurringTransactions.tsx",
+          "type": "CREATE",
+          "description": "Recurring transactions page for setup and management."
+        }
+      ],
+      "implementationGuide": "1. Create RecurringTransactions page in pages/. 2. Integrate with TransactionContext. 3. Connect to backend recurring endpoints. 4. Add JSDoc and tests.",
+      "verificationCriteria": "Recurring transactions UI renders, integrates, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "9c8de6c8-59c5-4b81-bbdc-0d7781d16d07",
+      "name": "Frontend: Theme & Accessibility",
+      "description": "Implement dark/light theme toggle and accessibility features (WCAG 2.1, ARIA, keyboard navigation, semantic HTML). TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "ffb49a4f-6c48-45c9-b095-769514ab996f"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/contexts/ThemeContext.tsx",
+          "type": "CREATE",
+          "description": "Theme context for dark/light mode and accessibility."
+        },
+        {
+          "path": "frontend/src/common/ThemeToggle.tsx",
+          "type": "CREATE",
+          "description": "Theme toggle component for UI switching."
+        }
+      ],
+      "implementationGuide": "1. Create theme context in contexts/. 2. Implement theme toggle in common/. 3. Ensure accessibility across all pages/components. 4. Add JSDoc and tests.",
+      "verificationCriteria": "Theme toggle works, accessibility features present, tested.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
+    },
+    {
+      "id": "779af228-5910-4821-a99e-c4b9d9d7891a",
+      "name": "Frontend: Integration & E2E Tests",
+      "description": "Write integration and E2E tests for all frontend pages and features using Jest and Testing Library. TypeScript only.",
+      "status": "pending",
+      "dependencies": [
+        {
+          "taskId": "cd43e6a9-1379-428d-91bd-a91f4000af9b"
+        },
+        {
+          "taskId": "c9e77334-ac26-4154-95c6-89c7d7122fd8"
+        },
+        {
+          "taskId": "5e8b61fa-5854-45eb-ab1c-131773191bf1"
+        },
+        {
+          "taskId": "41136c99-330c-4ce4-a828-8ec698dd2d1a"
+        },
+        {
+          "taskId": "c308dfef-4d23-4638-bd45-e092e13557b0"
+        },
+        {
+          "taskId": "a12076f2-656d-417b-b8c6-71e57b880d76"
+        },
+        {
+          "taskId": "c05cdc2a-8a32-407c-823b-85e40590244b"
+        },
+        {
+          "taskId": "9c8de6c8-59c5-4b81-bbdc-0d7781d16d07"
+        }
+      ],
+      "createdAt": "2025-06-20T11:51:02.851Z",
+      "updatedAt": "2025-06-20T11:51:02.851Z",
+      "relatedFiles": [
+        {
+          "path": "frontend/src/tests/",
+          "type": "TO_MODIFY",
+          "description": "Test directory for integration and E2E tests."
+        }
+      ],
+      "implementationGuide": "1. Write tests in tests/. 2. Cover all pages, contexts, and API services. 3. Ensure high coverage and accessibility checks. 4. Add JSDoc.",
+      "verificationCriteria": "All features covered by tests, high coverage, accessibility checks pass.",
+      "analysisResult": "Frontend expansion and splitting for ExpenseTracker: All tasks must be atomic, verifiable, and follow project/global standards (React 18, TypeScript, Context API, Bootstrap 5, Chart.js, React Hook Form, date-fns, Axios, ESLint/Prettier, JSDoc, Jest, accessibility, feature branch workflow). Directory structure and dependencies are clear. Naming, code style, and architectural patterns are consistent with shrimp-rules.md and project instructions. Shared components and contexts will be abstracted as needed. All tasks will be TypeScript, testable, and accessible. Feature branch workflow and !TM/!C7 enforcement are integrated. Each high-level frontend task will be split into atomic subtasks for UI, context, API, validation, tests, docs, accessibility, etc."
     }
   ]
 }
