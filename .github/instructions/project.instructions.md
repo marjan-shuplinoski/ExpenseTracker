@@ -20,7 +20,7 @@ ExpenseTracker is a comprehensive personal finance management application built 
 - **date-fns** for date manipulation
 
 ### Backend
-- **Node.js 18+** with TypeScript
+- **Node.js 18+** with JavaScript (ES Modules)
 - **Express.js 4.x** web framework
 - **MongoDB** with **Mongoose** as ODM
 - **JWT** for authentication

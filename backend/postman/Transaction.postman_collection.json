@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "d2e3f4a5-b6c7-8d9e-0f1a-2b3c4d5e6f7a",
+    "name": "ExpenseTracker Transaction API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Transaction endpoints (CRUD)"
+  },
+  "item": [
+    {
+      "name": "Get All Transactions",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/transactions",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "transactions"]
+        }
+      }
+    },
+    {
+      "name": "Get Transaction By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/transactions/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "transactions", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Create Transaction",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"account\": \"accountId\",\n  \"category\": \"Food\",\n  \"type\": \"expense\",\n  \"amount\": 100,\n  \"description\": \"Lunch\",\n  \"date\": \"2025-06-20\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/transactions",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "transactions"]
+        }
+      }
+    },
+    {
+      "name": "Update Transaction",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"account\": \"accountId\",\n  \"category\": \"Groceries\",\n  \"type\": \"expense\",\n  \"amount\": 120,\n  \"description\": \"Supermarket\",\n  \"date\": \"2025-06-20\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/transactions/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "transactions", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Delete Transaction",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/transactions/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "transactions", ":id"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" }
+  ]
+}

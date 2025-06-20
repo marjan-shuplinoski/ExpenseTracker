@@ -1,0 +1,81 @@
+{
+  "info": {
+    "_postman_id": "recurring-collection-2025-06-20",
+    "name": "ExpenseTracker Recurring Transactions",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Recurring Transactions endpoints. Uses variables for baseUrl and jwtToken."
+  },
+  "item": [
+    {
+      "name": "Create Recurring Transaction",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwtToken}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/recurring", "host": ["{{baseUrl}}"], "path": ["api", "recurring"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"account\": \"{{accountId}}\",\n  \"category\": \"Test\",\n  \"type\": \"expense\",\n  \"amount\": 10,\n  \"description\": \"Test recurring\",\n  \"startDate\": \"2025-06-20T00:00:00.000Z\",\n  \"frequency\": \"monthly\",\n  \"interval\": 1\n}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Recurring Transactions",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwtToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/recurring", "host": ["{{baseUrl}}"], "path": ["api", "recurring"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Recurring Transaction",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwtToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/recurring/{{recurringId}}", "host": ["{{baseUrl}}"], "path": ["api", "recurring", "{{recurringId}}"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Recurring Transaction",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwtToken}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/recurring/{{recurringId}}", "host": ["{{baseUrl}}"], "path": ["api", "recurring", "{{recurringId}}"] },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"account\": \"{{accountId}}\",\n  \"category\": \"Test\",\n  \"type\": \"expense\",\n  \"amount\": 20,\n  \"description\": \"Updated recurring\",\n  \"startDate\": \"2025-06-20T00:00:00.000Z\",\n  \"frequency\": \"monthly\",\n  \"interval\": 1\n}"
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Recurring Transaction",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{jwtToken}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/recurring/{{recurringId}}", "host": ["{{baseUrl}}"], "path": ["api", "recurring", "{{recurringId}}"] }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "jwtToken", "value": "" },
+    { "key": "accountId", "value": "" },
+    { "key": "recurringId", "value": "" }
+  ]
+}

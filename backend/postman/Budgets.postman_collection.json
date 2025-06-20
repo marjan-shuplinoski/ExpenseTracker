@@ -1,0 +1,74 @@
+{
+  "info": {
+    "_postman_id": "budget-collection-2025",
+    "name": "ExpenseTracker - Budget API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Budget endpoints (CRUD, progress) in ExpenseTracker. All endpoints require JWT auth."
+  },
+  "item": [
+    {
+      "name": "Create Budget",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Budget\",\n  \"amount\": 1000,\n  \"period\": \"monthly\",\n  \"startDate\": \"2025-06-01\",\n  \"endDate\": \"2025-06-30\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/budgets", "host": ["{{baseUrl}}"], "path": ["api", "budgets"] }
+      }
+    },
+    {
+      "name": "Get All Budgets",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/budgets", "host": ["{{baseUrl}}"], "path": ["api", "budgets"] }
+      }
+    },
+    {
+      "name": "Update Budget",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Updated Budget\",\n  \"amount\": 2000,\n  \"period\": \"monthly\",\n  \"startDate\": \"2025-06-01\",\n  \"endDate\": \"2025-06-30\"\n}"
+        },
+        "url": { "raw": "{{baseUrl}}/api/budgets/:id", "host": ["{{baseUrl}}"], "path": ["api", "budgets", ":id"] }
+      }
+    },
+    {
+      "name": "Delete Budget",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/budgets/:id", "host": ["{{baseUrl}}"], "path": ["api", "budgets", ":id"] }
+      }
+    },
+    {
+      "name": "Get Budget Progress",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/budgets/:id/progress", "host": ["{{baseUrl}}"], "path": ["api", "budgets", ":id", "progress"] }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" }
+  ]
+}

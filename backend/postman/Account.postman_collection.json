@@ -1,0 +1,94 @@
+{
+  "info": {
+    "_postman_id": "e1f2a3b4-c5d6-7e8f-9a0b-1c2d3e4f5a6b",
+    "name": "ExpenseTracker Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Account endpoints (CRUD)"
+  },
+  "item": [
+    {
+      "name": "Get All Accounts",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/accounts",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "accounts"]
+        }
+      }
+    },
+    {
+      "name": "Get Account By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/accounts/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "accounts", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Create Account",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Main Checking\",\n  \"type\": \"checking\",\n  \"balance\": 1000\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/accounts",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "accounts"]
+        }
+      }
+    },
+    {
+      "name": "Update Account",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
+          { "key": "Content-Type", "value": "application/json", "type": "text" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Updated Checking\",\n  \"type\": \"checking\",\n  \"balance\": 1200\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/accounts/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "accounts", ":id"]
+        }
+      }
+    },
+    {
+      "name": "Delete Account",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/accounts/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "accounts", ":id"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "token", "value": "" }
+  ]
+}
