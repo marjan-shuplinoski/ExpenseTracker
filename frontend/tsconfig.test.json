@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "module": "NodeNext",
+    "allowJs": true,
+    "types": ["jest", "node"],
+    "noEmit": true,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src", "src/tests"]
+}

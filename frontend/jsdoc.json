@@ -1,0 +1,21 @@
+{
+  "tags": {
+    "allowUnknownTags": true
+  },
+  "source": {
+    "include": ["src"],
+    "includePattern": ".js$|.ts$|.tsx$"
+  },
+  "template": "node_modules/jsdoc-template",
+  "plugins": ["node_modules/jsdoc-babel"],
+  "babel": {
+    "extensions": ["ts", "tsx", "js", "jsx"],
+    "presets": ["@babel/preset-env", "@babel/preset-typescript"],
+    "babelrc": false
+  },
+  "opts": {
+    "destination": "docs",
+    "recurse": true,
+    "template": "default"
+  }
+}
