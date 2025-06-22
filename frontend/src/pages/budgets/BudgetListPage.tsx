@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Table, Button, Spinner, Alert, Form, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import { useCategory } from '../../contexts/CategoryContext';
 
 interface Budget {
   _id: string;
@@ -21,6 +22,7 @@ const BudgetListPage: React.FC = () => {
   const [sortKey, setSortKey] = useState<keyof Budget>('startDate');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
   const navigate = useNavigate();
+  const { state: categoryState } = useCategory();
 
   useEffect(() => {
     setLoading(true);
@@ -54,6 +56,21 @@ const BudgetListPage: React.FC = () => {
     else {
       setSortKey(key);
       setSortDir('asc');
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('Delete this budget?')) return;
+    setLoading(true);
+    setError('');
+    try {
+      await api.delete(`/budgets/${id}`);
+      setBudgets(budgets => budgets.filter(b => b._id !== id));
+    } catch (e) {
+      const err = e as { response?: { data?: { message?: string } } };
+      setError(err?.response?.data?.message || 'Failed to delete budget.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -94,19 +111,23 @@ const BudgetListPage: React.FC = () => {
             ) : filteredBudgets.length === 0 ? (
               <tr><td colSpan={7} className="text-center">No budgets found.</td></tr>
             ) : (
-              filteredBudgets.map(budget => (
-                <tr key={budget._id}>
-                  <td>{budget.name}</td>
-                  <td>{budget.amount.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</td>
-                  <td>{budget.period}</td>
-                  <td>{budget.category}</td>
-                  <td>{new Date(budget.startDate).toLocaleDateString()}</td>
-                  <td>{new Date(budget.endDate).toLocaleDateString()}</td>
-                  <td>
-                    <Button size="sm" variant="outline-secondary" onClick={() => navigate(`/budgets/${budget._id}/edit`)} aria-label={`Edit ${budget.name}`}>Edit</Button>{' '}
-                  </td>
-                </tr>
-              ))
+              filteredBudgets.map(budget => {
+                const cat = categoryState.categories.find(c => c._id === budget.category);
+                return (
+                  <tr key={budget._id}>
+                    <td>{budget.name}</td>
+                    <td>{budget.amount.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</td>
+                    <td>{budget.period}</td>
+                    <td>{cat ? cat.name : budget.category}</td>
+                    <td>{new Date(budget.startDate).toLocaleDateString()}</td>
+                    <td>{new Date(budget.endDate).toLocaleDateString()}</td>
+                    <td>
+                      <Button size="sm" variant="outline-secondary" onClick={() => navigate(`/budgets/${budget._id}/edit`)} aria-label={`Edit ${budget.name}`}>Edit</Button>{' '}
+                      <Button size="sm" variant="outline-danger" onClick={() => handleDelete(budget._id)} aria-label={`Delete ${budget.name}`}>Delete</Button>
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </Table>

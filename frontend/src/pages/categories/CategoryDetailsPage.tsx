@@ -1,32 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import api from '../../services/api';
-import { Spinner } from 'react-bootstrap';
-
-interface Category {
-  _id: string;
-  name: string;
-  type: string;
-  // Extend with optional fields as needed
-}
+import { Spinner, Alert } from 'react-bootstrap';
+import { fetchCategory } from '../../services/categoryService';
+import type { Category as CategoryType } from '../../contexts/CategoryContext';
 
 const CategoryDetailsPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const [category, setCategory] = useState<Category | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState<CategoryType | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!id) return;
     setLoading(true);
-    api.get(`/categories/${id}`)
-      .then(res => setCategory(res.data))
+    fetchCategory(id)
+      .then((res) => res && res._id ? setCategory(res) : setCategory(null))
       .catch(() => setError('Failed to load category'))
       .finally(() => setLoading(false));
   }, [id]);
 
   if (loading) return <Spinner animation="border" role="status" aria-label="Loading" />;
-  if (error) return <div className="alert alert-danger" role="alert">{error}</div>;
+  if (error) return <Alert variant="danger" role="alert">{error}</Alert>;
   if (!category) return <div>No category found.</div>;
 
   return (

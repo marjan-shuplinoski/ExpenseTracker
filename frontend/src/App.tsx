@@ -1,10 +1,14 @@
 import './App.css';
 import { ThemeProvider } from './contexts/ThemeContext';
-import ThemeToggle from './components/ThemeToggle';
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Menu from './components/Menu';
 import ProtectedRoute from './routes/ProtectedRoute';
+import { BudgetProvider } from './contexts/BudgetContext';
+import { TransactionProvider } from './contexts/TransactionContext';
+import { AccountProvider } from './contexts/AccountContext';
+import { CategoryProvider } from './contexts/CategoryContext';
+import LoadingScreen from './components/LoadingScreen';
 import { useAuth } from './hooks/useAuth';
 // Page imports
 import DashboardPage from './pages/dashboard/DashboardPage';
@@ -25,49 +29,48 @@ import AccountDetailsPage from './pages/accounts/AccountDetailsPage';
 import BudgetDetailsPage from './pages/budgets/BudgetDetailsPage';
 import CategoryDetailsPage from './pages/categories/CategoryDetailsPage';
 import TransactionDetailsPage from './pages/transactions/TransactionDetailsPage';
+import RecurringTransactionFormPage from './pages/transactions/RecurringTransactionFormPage';
+import LogoutPage from './pages/auth/LogoutPage';
 
 function AppRoutes() {
-  const { user } = useAuth();
+  const { loading } = useAuth();
+  if (loading) return <LoadingScreen />;
+
   return (
     <>
-      {!user ? (
+      <Menu />
+      <div className="container py-4">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/accounts" element={<AccountListPage />} />
+            <Route path="/accounts/new" element={<AccountFormPage />} />
+            <Route path="/transactions" element={<TransactionListPage />} />
+            <Route path="/transactions/new" element={<TransactionFormPage />} />
+            <Route path="/recurring" element={<RecurringTransactionsPage />} />
+            <Route path="/recurring/new" element={<RecurringTransactionFormPage />} />
+            <Route path="/recurring/:id/edit" element={<RecurringTransactionFormPage />} />
+            <Route path="/budgets" element={<BudgetListPage />} />
+            <Route path="/budgets/new" element={<BudgetFormPage />} />
+            <Route path="/categories" element={<CategoryListPage />} />
+            <Route path="/categories/new" element={<CategoryFormPage />} />
+            <Route path="/reports" element={<ReportsPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/logout" element={<LogoutPage />} />
+            <Route path="/accounts/:id" element={<AccountDetailsPage />} />
+            <Route path="/accounts/:id/edit" element={<AccountFormPage />} />
+            <Route path="/budgets/:id" element={<BudgetDetailsPage />} />
+            <Route path="/budgets/:id/edit" element={<BudgetFormPage />} />
+            <Route path="/categories/:id" element={<CategoryDetailsPage />} />
+            <Route path="/transactions/:id" element={<TransactionDetailsPage />} />
+            <Route path="/transactions/:id/edit" element={<TransactionFormPage />} />
+            <Route path="/categories/:id/edit" element={<CategoryFormPage />} />
+          </Route>
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
-      ) : (
-        <>
-          <Menu />
-          <nav className="navbar navbar-light bg-light justify-content-end p-3" aria-label="Theme toggle navigation">
-            <ThemeToggle />
-          </nav>
-          <div className="container py-4">
-            <Routes>
-              <Route element={<ProtectedRoute />}>
-                <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/accounts" element={<AccountListPage />} />
-                <Route path="/accounts/new" element={<AccountFormPage />} />
-                <Route path="/transactions" element={<TransactionListPage />} />
-                <Route path="/transactions/new" element={<TransactionFormPage />} />
-                <Route path="/recurring" element={<RecurringTransactionsPage />} />
-                <Route path="/budgets" element={<BudgetListPage />} />
-                <Route path="/budgets/new" element={<BudgetFormPage />} />
-                <Route path="/categories" element={<CategoryListPage />} />
-                <Route path="/categories/new" element={<CategoryFormPage />} />
-                <Route path="/reports" element={<ReportsPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="/logout" element={<Navigate to="/login" replace />} />
-                <Route path="/accounts/:id" element={<AccountDetailsPage />} />
-                <Route path="/budgets/:id" element={<BudgetDetailsPage />} />
-                <Route path="/categories/:id" element={<CategoryDetailsPage />} />
-                <Route path="/transactions/:id" element={<TransactionDetailsPage />} />
-              </Route>
-              <Route path="*" element={<Navigate to="/dashboard" replace />} />
-            </Routes>
-          </div>
-        </>
-      )}
+      </div>
     </>
   );
 }
@@ -77,9 +80,17 @@ function App() {
     <AuthProvider>
       <ThemeProvider>
         <Router>
-          <main className="min-vh-100 bg-body" aria-label="Main Content">
-            <AppRoutes />
-          </main>
+          <AccountProvider>
+            <BudgetProvider>
+              <TransactionProvider>
+                <CategoryProvider>
+                  <main className="min-vh-100 bg-body" aria-label="Main Content">
+                    <AppRoutes />
+                  </main>
+                </CategoryProvider>
+              </TransactionProvider>
+            </BudgetProvider>
+          </AccountProvider>
         </Router>
       </ThemeProvider>
     </AuthProvider>

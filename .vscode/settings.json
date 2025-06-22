@@ -21,6 +21,10 @@
                     "TEMPLATES_USE": "en",
                     "ENABLE_GUI": "true"
                 }
+            },
+            "puppeteer": {
+                "command": "npx",
+                "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
             }
         }
     }

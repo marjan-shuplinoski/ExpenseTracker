@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext, ReactNode, Dispatch } from 'react';
+import { fetchCategories } from '../services/categoryService';
 
 export type Category = {
   _id?: string;
@@ -60,6 +61,14 @@ const CategoryContext = createContext<{
 
 export const CategoryProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(categoryReducer, initialState);
+
+  React.useEffect(() => {
+    dispatch({ type: 'FETCH_START' });
+    fetchCategories()
+      .then(data => dispatch({ type: 'FETCH_SUCCESS', payload: data }))
+      .catch(e => dispatch({ type: 'FETCH_ERROR', payload: e?.message || 'Failed to load categories' }));
+  }, []);
+
   return (
     <CategoryContext.Provider value={{ state, dispatch }}>
       {children}

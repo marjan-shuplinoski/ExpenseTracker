@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Form, Button, Spinner, Alert } from 'react-bootstrap';
+import { useCategory } from '../../contexts/CategoryContext';
+import { addCategory, updateCategory, fetchCategory } from '../../services/categoryService';
 
 interface CategoryFormInputs {
   _id?: string;
@@ -20,6 +22,7 @@ const CategoryFormPage: React.FC = () => {
   const [error, setError] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const isEdit = Boolean(id);
+  const { dispatch } = useCategory();
 
   const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<CategoryFormInputs>({
     defaultValues: {
@@ -31,22 +34,27 @@ const CategoryFormPage: React.FC = () => {
   useEffect(() => {
     if (isEdit && id) {
       setLoading(true);
-      // TODO: Replace with API call when CategoryContext/API is ready
-      // Example: api.get(`/categories/${id}`)
-      setTimeout(() => {
-        setValue('name', 'Sample Category');
-        setValue('type', 'expense');
-        setLoading(false);
-      }, 500);
+      fetchCategory(id)
+        .then(data => {
+          setValue('name', data.name);
+          setValue('type', data.type);
+        })
+        .catch(() => setError('Failed to load category.'))
+        .finally(() => setLoading(false));
     }
   }, [isEdit, id, setValue]);
 
-  const onSubmit: SubmitHandler<CategoryFormInputs> = async () => {
+  const onSubmit: SubmitHandler<CategoryFormInputs> = async (formData) => {
     setError('');
     setLoading(true);
     try {
-      // TODO: Replace with API call when CategoryContext/API is ready
-      await new Promise(res => setTimeout(res, 500));
+      if (isEdit && id) {
+        const updated = await updateCategory(id, { name: formData.name, type: formData.type });
+        dispatch({ type: 'UPDATE_CATEGORY', payload: updated });
+      } else {
+        const created = await addCategory({ name: formData.name, type: formData.type });
+        dispatch({ type: 'ADD_CATEGORY', payload: created });
+      }
       navigate('/categories');
     } catch {
       setError('Failed to save category.');

@@ -31,7 +31,7 @@ router.post('/register', async (req, res, next) => {
     if (await User.findOne({ email })) return res.status(409).json({ message: 'Email already exists' });
     const user = await User.create({ name, email, password });
     const token = generateToken(user);
-    res.status(201).json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    res.status(201).json({ token, user: { _id: user._id, name: user.name, email: user.email } });
   } catch (err) { next(err); }
 });
 
@@ -43,7 +43,7 @@ router.post('/login', async (req, res, next) => {
     const user = await User.findOne({ email });
     if (!user || !(await user.comparePassword(password))) return res.status(401).json({ message: 'Invalid credentials' });
     const token = generateToken(user);
-    res.json({ token, user: { id: user._id, name: user.name, email: user.email } });
+    res.json({ token, user: { _id: user._id, name: user.name, email: user.email } });
   } catch (err) { next(err); }
 });
 

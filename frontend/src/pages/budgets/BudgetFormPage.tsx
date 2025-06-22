@@ -3,6 +3,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Form, Button, Spinner, Alert } from 'react-bootstrap';
 import api from '../../services/api';
+import { useCategory } from '../../contexts/CategoryContext';
 
 interface BudgetFormInputs {
   _id?: string;
@@ -20,20 +21,13 @@ const periods = [
   { value: 'yearly', label: 'Yearly' },
 ];
 
-const categories = [
-  { value: 'food', label: 'Food' },
-  { value: 'rent', label: 'Rent' },
-  { value: 'utilities', label: 'Utilities' },
-  { value: 'salary', label: 'Salary' },
-  // add more as needed
-];
-
 const BudgetFormPage: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const [error, setError] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const isEdit = Boolean(id);
+  const { state: categoryState } = useCategory();
 
   const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<BudgetFormInputs>({
     defaultValues: {
@@ -136,8 +130,8 @@ const BudgetFormPage: React.FC = () => {
           <Form.Label>Category</Form.Label>
           <Form.Select {...register('category', { required: 'Category is required' })} aria-invalid={!!errors.category} aria-describedby="categoryError">
             <option value="">Select category</option>
-            {categories.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            {categoryState.categories.map(opt => (
+              <option key={opt._id} value={opt._id}>{opt.name}</option>
             ))}
           </Form.Select>
           {errors.category && <Form.Text id="categoryError" className="text-danger">{errors.category.message}</Form.Text>}

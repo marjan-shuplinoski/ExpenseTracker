@@ -1,26 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import { Form, Button, Alert } from 'react-bootstrap';
+import api from '../../services/api';
 
 const ProfilePage: React.FC = () => {
   const { user } = useAuth();
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
+  const [avatar, setAvatar] = useState(user?.avatar || '');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // TODO: Implement update profile API integration
+  useEffect(() => {
+    setLoading(true);
+    api.get('/auth/me')
+      .then(res => {
+        setName(res.data.name);
+        setEmail(res.data.email);
+        setAvatar(res.data.avatar || '');
+      })
+      .catch((e) => {
+        const msg = (e as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Failed to load profile.';
+        setError(msg);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
     setSuccess(null);
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const res = await api.put('/auth/me', { name, email, avatar });
+      setName(res.data.name);
+      setEmail(res.data.email);
+      setAvatar(res.data.avatar || '');
+      setSuccess('Profile updated successfully.');
+    } catch (err) {
+      const msg = (err as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Failed to update profile.';
+      setError(msg);
+    } finally {
       setLoading(false);
-      setSuccess('Profile updated (demo)');
-    }, 1000);
+    }
   };
 
   if (!user) {
@@ -32,7 +55,7 @@ const ProfilePage: React.FC = () => {
       <h1 className="mb-4">Profile</h1>
       <Form onSubmit={handleSubmit} aria-describedby="profile-form-desc" noValidate>
         <div id="profile-form-desc" className="visually-hidden">
-          Update your profile information. Name and email are required.
+          Update your profile information. Name, email, and avatar are required.
         </div>
         {error && <Alert variant="danger">{error}</Alert>}
         {success && <Alert variant="success">{success}</Alert>}
@@ -58,6 +81,17 @@ const ProfilePage: React.FC = () => {
             aria-invalid={!!error}
           />
         </Form.Group>
+        <Form.Group className="mb-3" controlId="profileAvatar">
+          <Form.Label>Avatar URL</Form.Label>
+          <Form.Control
+            type="url"
+            value={avatar}
+            onChange={e => setAvatar(e.target.value)}
+            autoComplete="photo"
+            aria-invalid={!!error}
+          />
+        </Form.Group>
+        {avatar && <img src={avatar} alt="Avatar" className="mb-3 rounded-circle" style={{ width: 80, height: 80, objectFit: 'cover' }} />}
         <Button variant="primary" type="submit" disabled={loading} aria-busy={loading} className="w-100">
           {loading ? 'Saving…' : 'Save Changes'}
         </Button>

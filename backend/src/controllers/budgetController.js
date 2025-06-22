@@ -43,3 +43,11 @@ export async function getBudgetProgress(req, res, next) {
     res.json({ budget, progress: 0 });
   } catch (err) { next(err); }
 }
+
+export async function getBudgetById(req, res, next) {
+  try {
+    const budget = await Budget.findOne({ _id: req.params.id, user: req.user.id });
+    if (!budget) return res.status(404).json({ message: 'Budget not found' });
+    res.json(budget);
+  } catch (err) { next(err); }
+}

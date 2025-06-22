@@ -1,11 +1,14 @@
 import React, { createContext, useReducer, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import api from '../services/api';
+import Cookies from 'js-cookie';
+import { setLogoutHandler } from './authLogoutHandler';
 
 export interface User {
   _id: string;
   name: string;
   email: string;
+  avatar?: string;
   // add more fields as needed
 }
 
@@ -58,12 +61,27 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const [hydrated, setHydrated] = React.useState(false);
 
-  // Load user from localStorage on mount
+  // Load user from localStorage or cookie on mount
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       dispatch({ type: 'LOGIN_SUCCESS', payload: JSON.parse(storedUser) });
+      setHydrated(true);
+    } else if (Cookies.get('auth')) {
+      api.get('/auth/me')
+        .then(res => {
+          dispatch({ type: 'LOGIN_SUCCESS', payload: res.data });
+          localStorage.setItem('user', JSON.stringify(res.data));
+        })
+        .catch(() => {
+          Cookies.remove('auth');
+          localStorage.removeItem('jwt_token');
+        })
+        .finally(() => setHydrated(true));
+    } else {
+      setHydrated(true);
     }
   }, []);
 
@@ -78,10 +96,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   // Save JWT to localStorage
   const setToken = (token: string) => {
-    localStorage.setItem('jwt', token);
+    localStorage.setItem('jwt_token', token);
+    Cookies.set('auth', '1', { sameSite: 'lax' });
   };
   const clearToken = () => {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('jwt_token');
+    Cookies.remove('auth');
   };
 
   const login = useCallback(async (email: string, password: string) => {
@@ -121,8 +141,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     dispatch({ type: 'LOGOUT' });
   }, []);
 
+  useEffect(() => {
+    setLogoutHandler(() => logout);
+  }, [logout]);
+
   return (
-    <AuthContext.Provider value={{ ...state, login, register, logout }}>
+    <AuthContext.Provider value={{ ...state, login, register, logout, loading: state.loading || !hydrated }}>
       {children}
     </AuthContext.Provider>
   );

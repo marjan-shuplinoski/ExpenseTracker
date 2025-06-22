@@ -13,11 +13,11 @@ interface AccountFormInputs {
 }
 
 const accountTypes = [
-  { value: 'checking', label: 'Checking' },
-  { value: 'savings', label: 'Savings' },
-  { value: 'credit', label: 'Credit Card' },
   { value: 'cash', label: 'Cash' },
-  // add more as needed
+  { value: 'bank', label: 'Bank' },
+  { value: 'credit', label: 'Credit Card' },
+  { value: 'investment', label: 'Investment' },
+  { value: 'other', label: 'Other' },
 ];
 
 const currencies = [
@@ -55,10 +55,16 @@ const AccountFormPage: React.FC = () => {
   }, [isEdit, id, accounts, setValue]);
 
   const onSubmit: SubmitHandler<AccountFormInputs> = async (data) => {
+    const payload = {
+      name: data.name.trim(),
+      type: data.type,
+      balance: Number(data.balance),
+      currency: data.currency,
+    };
     if (isEdit && id) {
-      await updateAccount(id, data);
+      await updateAccount(id, payload);
     } else {
-      await createAccount(data);
+      await createAccount(payload);
     }
     navigate('/accounts');
   };

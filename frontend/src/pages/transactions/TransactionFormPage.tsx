@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Form, Button, Spinner, Alert } from 'react-bootstrap';
-// import { TransactionContext } from '../../contexts/TransactionContext';
-// import type { TransactionContextProps } from '../../contexts/TransactionContext';
+import { TransactionContext } from '../../contexts/TransactionContext';
+import type { TransactionContextProps } from '../../contexts/TransactionContext';
+import { AccountContext } from '../../contexts/AccountContext';
+import type { AccountContextProps } from '../../contexts/AccountContext';
 
 interface TransactionFormInputs {
   _id?: string;
@@ -23,55 +25,56 @@ const categories = [
   // add more as needed
 ];
 
-const accounts = [
-  { value: 'main', label: 'Main Account' },
-  { value: 'savings', label: 'Savings' },
-  // add more as needed
-];
-
 const TransactionFormPage: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
-  // const transactionContext = useContext(TransactionContext as React.Context<TransactionContextProps>);
-  // const { transactions, loading, error, createTransaction, updateTransaction } = transactionContext;
-  const transactions: TransactionFormInputs[] = React.useMemo(() => [], []);
-  const loading = false;
-  const error = '';
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const createTransaction = async (_: TransactionFormInputs) => {};
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const updateTransaction = async (_id: string, _data: TransactionFormInputs) => {};
+  const transactionContext = useContext(TransactionContext as React.Context<TransactionContextProps>);
+  const { transactions, loading, error, createTransaction, updateTransaction } = transactionContext;
+  const accountContext = useContext(AccountContext as React.Context<AccountContextProps>);
+  const { accounts } = accountContext;
 
   const isEdit = Boolean(id);
-  const defaultValues: TransactionFormInputs = isEdit
-    ? (transactions.find(txn => txn._id === id) || { date: '', description: '', amount: 0, category: '', account: '', type: 'expense' })
-    : { date: '', description: '', amount: 0, category: '', account: '', type: 'expense' };
+  const txn = isEdit ? transactions.find(txn => txn._id === id) : undefined;
+  const defaultValues: TransactionFormInputs = txn || { date: '', description: '', amount: 0, category: '', account: '', type: 'expense' };
 
-  const { register, handleSubmit, setValue, formState: { errors, isSubmitting } } = useForm<TransactionFormInputs>({
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<TransactionFormInputs>({
     defaultValues,
   });
 
   useEffect(() => {
-    if (isEdit && transactions.length) {
-      const txn = transactions.find(t => t._id === id);
+    if (isEdit) {
       if (txn) {
-        setValue('date', txn.date);
-        setValue('description', txn.description);
-        setValue('amount', txn.amount);
-        setValue('category', txn.category);
-        setValue('account', txn.account);
-        setValue('type', txn.type);
+        reset({
+          date: txn.date ? txn.date.slice(0, 10) : '', // Ensure yyyy-mm-dd format
+          description: txn.description,
+          amount: txn.amount,
+          category: txn.category,
+          account: txn.account,
+          type: txn.type,
+        });
+      } else if (transactions.length) {
+        // If not found after loading, redirect
+        navigate('/transactions');
       }
     }
-  }, [isEdit, id, transactions, setValue]);
+  }, [isEdit, txn, transactions.length, reset, navigate]);
 
   const onSubmit: SubmitHandler<TransactionFormInputs> = async (data) => {
+    const payload = {
+      date: data.date,
+      description: data.description.trim(),
+      amount: Number(data.amount),
+      category: data.category,
+      account: data.account,
+      type: data.type,
+    };
     if (isEdit && id) {
-      await updateTransaction(id, data);
+      await updateTransaction(id, payload);
+      navigate('/transactions');
     } else {
-      await createTransaction(data);
+      await createTransaction(payload);
+      navigate('/transactions');
     }
-    navigate('/transactions');
   };
 
   return (
@@ -125,8 +128,8 @@ const TransactionFormPage: React.FC = () => {
           <Form.Label>Account</Form.Label>
           <Form.Select {...register('account', { required: 'Account is required' })} aria-invalid={!!errors.account} aria-describedby="accountError">
             <option value="">Select account</option>
-            {accounts.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            {accounts.map(acc => (
+              <option key={acc._id} value={acc._id}>{acc.name}</option>
             ))}
           </Form.Select>
           {errors.account && <Form.Text id="accountError" className="text-danger">{errors.account.message}</Form.Text>}

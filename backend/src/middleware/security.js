@@ -35,7 +35,7 @@ export function securityMiddleware(app) {
   }));
   app.use(rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100,
+    max: 100000, // Increased from 100 to 100000 as requested
     standardHeaders: true,
     legacyHeaders: false,
     message: 'Too many requests, please try again later.'

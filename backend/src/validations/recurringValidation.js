@@ -12,4 +12,5 @@ export const recurringValidation = Joi.object({
   endDate: Joi.date().optional().allow(null),
   nextRun: Joi.date().optional(),
   active: Joi.boolean().optional(),
+  name: Joi.string().max(100).required(),
 });

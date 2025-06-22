@@ -8,6 +8,7 @@ import {
   updateBudget,
   deleteBudget,
   getBudgetProgress,
+  getBudgetById,
 } from '../controllers/budgetController.js';
 import Joi from 'joi';
 
@@ -20,6 +21,7 @@ router.post('/', validateBody(budgetSchema), createBudget);
 router.put('/:id', validateBody(budgetSchema), updateBudget);
 router.delete('/:id', deleteBudget);
 router.get('/:id/progress', getBudgetProgress);
+router.get('/:id', getBudgetById);
 
 function validateBody(schema) {
   return (req, res, next) => {

@@ -1,6 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import type { AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import apiConfig from './apiConfig';
+import { callLogoutHandler } from '../contexts/authLogoutHandler';
 
 // JWT token key for localStorage/sessionStorage
 const TOKEN_KEY = 'jwt_token';
@@ -31,9 +32,8 @@ api.interceptors.response.use(
     if (error.response) {
       // Handle 401/403 globally (e.g., logout, redirect)
       if (error.response.status === 401 || error.response.status === 403) {
-        // Optionally clear token and redirect to login
         localStorage.removeItem(TOKEN_KEY);
-        // window.location.href = '/login';
+        callLogoutHandler();
       }
     }
     return Promise.reject(error);

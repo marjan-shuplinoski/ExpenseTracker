@@ -1,28 +1,10 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useContext } from 'react';
 import { Table, Button, Spinner, Alert, Form, InputGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-// Placeholder: Replace with actual TransactionContext import when available
-// import { TransactionContext } from '../../contexts/TransactionContext';
-
-// Temporary type for demonstration; replace with actual Transaction type
-interface Transaction {
-  _id: string;
-  date: string;
-  description: string;
-  amount: number;
-  category: string;
-  account: string;
-  type: 'income' | 'expense';
-}
+import { TransactionContext } from '../../contexts/TransactionContext';
 
 const TransactionListPage: React.FC = () => {
-  // Replace with: const { transactions, loading, error, deleteTransaction } = useContext(TransactionContext)!;
-  // For now, use a static array for demonstration
-  const [transactions] = useState<Transaction[]>([]);
-  const loading = false;
-  const error = '';
-  const deleteTransaction = () => {};
-
+  const { transactions, loading, error, deleteTransaction } = useContext(TransactionContext)!;
   const [filter, setFilter] = useState('');
   const [sortKey, setSortKey] = useState<'date' | 'description' | 'amount' | 'category' | 'account' | 'type'>('date');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
@@ -107,8 +89,8 @@ const TransactionListPage: React.FC = () => {
                   <td>{txn.account}</td>
                   <td>{txn.type}</td>
                   <td>
-                    <Button size="sm" variant="outline-secondary" onClick={() => navigate(`/transactions/${txn._id}/edit`)} aria-label={`Edit ${txn.description}`}>Edit</Button>{' '}
-                    <Button size="sm" variant="outline-danger" onClick={() => deleteTransaction()} aria-label={`Delete ${txn.description}`}>Delete</Button>
+                    <Button size="sm" variant="outline-secondary" onClick={e => { e.stopPropagation(); navigate(`/transactions/${txn._id}/edit`); }} aria-label={`Edit ${txn.description}`}>Edit</Button>{' '}
+                    <Button size="sm" variant="outline-danger" onClick={e => { e.stopPropagation(); deleteTransaction(txn._id); }} aria-label={`Delete ${txn.description}`}>Delete</Button>
                   </td>
                 </tr>
               ))

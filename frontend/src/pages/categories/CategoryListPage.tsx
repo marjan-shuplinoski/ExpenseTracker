@@ -1,38 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { Table, Button, Spinner, Form, InputGroup } from 'react-bootstrap';
+import React, { useEffect } from 'react';
+import { Table, Button, Spinner, Form, InputGroup, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-// TODO: Replace with CategoryContext when available
-// import { CategoryContext } from '../../contexts/CategoryContext';
-
-interface Category {
-  _id: string;
-  name: string;
-  type: 'income' | 'expense';
-}
+import { useCategory } from '../../contexts/CategoryContext';
+import { fetchCategories, deleteCategory } from '../../services/categoryService';
 
 const CategoryListPage: React.FC = () => {
-  // TODO: Replace with context
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [filter, setFilter] = useState('');
-  const [sortKey, setSortKey] = useState<keyof Category>('name');
-  const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+  const { state, dispatch } = useCategory();
+  const [filter, setFilter] = React.useState('');
+  const [sortKey, setSortKey] = React.useState<'name' | 'type'>('name');
+  const [sortDir, setSortDir] = React.useState<'asc' | 'desc'>('asc');
+  const [error, setError] = React.useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true);
-    // TODO: Replace with API call
-    setTimeout(() => {
-      setCategories([
-        { _id: '1', name: 'Food', type: 'expense' },
-        { _id: '2', name: 'Salary', type: 'income' },
-      ]);
-      setLoading(false);
-    }, 500);
-  }, []);
+    dispatch({ type: 'FETCH_START' });
+    fetchCategories()
+      .then(data => dispatch({ type: 'FETCH_SUCCESS', payload: data }))
+      .catch(e => dispatch({ type: 'FETCH_ERROR', payload: e?.message || 'Failed to load categories' }));
+    // eslint-disable-next-line
+  }, [dispatch]);
 
   const filteredCategories = React.useMemo(() => {
-    let filtered = categories;
+    let filtered = state.categories;
     if (filter) {
       const f = filter.toLowerCase();
       filtered = filtered.filter(c => c.name.toLowerCase().includes(f) || c.type.toLowerCase().includes(f));
@@ -44,13 +33,23 @@ const CategoryListPage: React.FC = () => {
       return sortDir === 'asc' ? cmp : -cmp;
     });
     return filtered;
-  }, [categories, filter, sortKey, sortDir]);
+  }, [state.categories, filter, sortKey, sortDir]);
 
-  const handleSort = (key: keyof Category) => {
+  const handleSort = (key: 'name' | 'type') => {
     if (sortKey === key) setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
     else {
       setSortKey(key);
       setSortDir('asc');
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!window.confirm('Delete this category?')) return;
+    try {
+      await deleteCategory(id);
+      dispatch({ type: 'DELETE_CATEGORY', payload: id });
+    } catch {
+      setError('Failed to delete category.');
     }
   };
 
@@ -71,6 +70,7 @@ const CategoryListPage: React.FC = () => {
           onChange={e => setFilter(e.target.value)}
         />
       </InputGroup>
+      {error && <Alert variant="danger">{error}</Alert>}
       <div className="table-responsive">
         <Table striped bordered hover size="sm" aria-label="Categories table">
           <thead>
@@ -81,7 +81,7 @@ const CategoryListPage: React.FC = () => {
             </tr>
           </thead>
           <tbody>
-            {loading ? (
+            {state.loading ? (
               <tr><td colSpan={3} className="text-center"><Spinner animation="border" size="sm" /></td></tr>
             ) : filteredCategories.length === 0 ? (
               <tr><td colSpan={3} className="text-center">No categories found.</td></tr>
@@ -92,6 +92,7 @@ const CategoryListPage: React.FC = () => {
                   <td>{category.type.charAt(0).toUpperCase() + category.type.slice(1)}</td>
                   <td>
                     <Button size="sm" variant="outline-secondary" onClick={() => navigate(`/categories/${category._id}/edit`)} aria-label={`Edit ${category.name}`}>Edit</Button>{' '}
+                    <Button size="sm" variant="outline-danger" onClick={() => handleDelete(category._id!)} aria-label={`Delete ${category.name}`}>Delete</Button>
                   </td>
                 </tr>
               ))

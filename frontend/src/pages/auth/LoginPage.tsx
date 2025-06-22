@@ -19,13 +19,20 @@ const LoginPage: React.FC = () => {
   } = useForm<LoginFormInputs>();
   const [formError, setFormError] = React.useState<string | null>(null);
 
-  if (user) return <Navigate to="/dashboard" replace />;
+  const location = window.location;
+  const params = new URLSearchParams(location.search);
+  const redirect = params.get('redirect');
+
+  if (user) {
+    // Redirect to intended route after login, or dashboard by default
+    return <Navigate to={redirect || '/dashboard'} replace />;
+  }
 
   const onSubmit = async (data: LoginFormInputs) => {
     setFormError(null);
     try {
       await login(data.email, data.password);
-      navigate('/dashboard', { replace: true });
+      navigate(redirect || '/dashboard', { replace: true });
     } catch {
       setFormError(error || 'Login failed');
     }

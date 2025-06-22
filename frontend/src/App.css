@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Force navbar text black in dark mode */
+@media (prefers-color-scheme: dark) {
+  .navbar, .navbar .navbar-nav .nav-link, .navbar .navbar-brand {
+    color: #111 !important;
+  }
+  .navbar .nav-link.active, .navbar .nav-link:focus, .navbar .nav-link:hover {
+    color: #000 !important;
+  }
+}
