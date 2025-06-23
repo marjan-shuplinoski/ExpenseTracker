@@ -11,7 +11,7 @@ export async function getBudgets(req, res, next) {
 export async function createBudget(req, res, next) {
   try {
     const budget = await Budget.create({ ...req.body, user: req.user.id });
-    res.status(201).json(budget);
+    res.status(201).json({ message: 'Budget created', budget });
   } catch (err) { next(err); }
 }
 
@@ -23,7 +23,7 @@ export async function updateBudget(req, res, next) {
       { new: true, runValidators: true }
     );
     if (!budget) return res.status(404).json({ message: 'Budget not found' });
-    res.json(budget);
+    res.json({ message: 'Budget updated', budget });
   } catch (err) { next(err); }
 }
 
@@ -31,7 +31,7 @@ export async function deleteBudget(req, res, next) {
   try {
     const budget = await Budget.findOneAndDelete({ _id: req.params.id, user: req.user.id });
     if (!budget) return res.status(404).json({ message: 'Budget not found' });
-    res.json({ success: true });
+    res.json({ message: 'Budget deleted' });
   } catch (err) { next(err); }
 }
 

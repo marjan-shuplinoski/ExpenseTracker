@@ -9,6 +9,7 @@ const budgetSchema = new mongoose.Schema({
   category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: false },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
+  currentBalance: { type: Number, required: true, default: 0 },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

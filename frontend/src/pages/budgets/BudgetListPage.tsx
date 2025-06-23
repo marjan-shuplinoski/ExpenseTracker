@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Table, Button, Spinner, Alert, Form, InputGroup } from 'react-bootstrap';
+import { Table, Button, Spinner, Alert, Form, InputGroup, Pagination } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import { useCategory } from '../../contexts/CategoryContext';
@@ -12,6 +12,7 @@ interface Budget {
   category: string;
   startDate: string;
   endDate: string;
+  currentBalance: number; // not optional, always present from backend
 }
 
 const BudgetListPage: React.FC = () => {
@@ -21,6 +22,8 @@ const BudgetListPage: React.FC = () => {
   const [filter, setFilter] = useState('');
   const [sortKey, setSortKey] = useState<keyof Budget>('startDate');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
   const navigate = useNavigate();
   const { state: categoryState } = useCategory();
 
@@ -51,6 +54,9 @@ const BudgetListPage: React.FC = () => {
     return filtered;
   }, [budgets, filter, sortKey, sortDir]);
 
+  const totalPages = Math.ceil(filteredBudgets.length / pageSize);
+  const paginatedBudgets = filteredBudgets.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
   const handleSort = (key: keyof Budget) => {
     if (sortKey === key) setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
     else {
@@ -60,7 +66,6 @@ const BudgetListPage: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Delete this budget?')) return;
     setLoading(true);
     setError('');
     try {
@@ -97,7 +102,8 @@ const BudgetListPage: React.FC = () => {
           <thead>
             <tr>
               <th role="button" tabIndex={0} onClick={() => handleSort('name')}>Name</th>
-              <th role="button" tabIndex={0} onClick={() => handleSort('amount')}>Amount</th>
+              <th role="button" tabIndex={0} onClick={() => handleSort('amount')}>Planned</th>
+              <th>Current Balance</th>
               <th role="button" tabIndex={0} onClick={() => handleSort('period')}>Period</th>
               <th role="button" tabIndex={0} onClick={() => handleSort('category')}>Category</th>
               <th role="button" tabIndex={0} onClick={() => handleSort('startDate')}>Start Date</th>
@@ -108,15 +114,16 @@ const BudgetListPage: React.FC = () => {
           <tbody>
             {loading ? (
               <tr><td colSpan={7} className="text-center"><Spinner animation="border" size="sm" /></td></tr>
-            ) : filteredBudgets.length === 0 ? (
+            ) : paginatedBudgets.length === 0 ? (
               <tr><td colSpan={7} className="text-center">No budgets found.</td></tr>
             ) : (
-              filteredBudgets.map(budget => {
+              paginatedBudgets.map(budget => {
                 const cat = categoryState.categories.find(c => c._id === budget.category);
                 return (
                   <tr key={budget._id}>
                     <td>{budget.name}</td>
                     <td>{budget.amount.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</td>
+                    <td>{budget.currentBalance.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}</td>
                     <td>{budget.period}</td>
                     <td>{cat ? cat.name : budget.category}</td>
                     <td>{new Date(budget.startDate).toLocaleDateString()}</td>
@@ -132,6 +139,21 @@ const BudgetListPage: React.FC = () => {
           </tbody>
         </Table>
       </div>
+      <Pagination className="justify-content-center mt-3">
+        <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
+        <Pagination.Prev onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} />
+        {[...Array(totalPages)].map((_, idx) => (
+          <Pagination.Item
+            key={idx + 1}
+            active={currentPage === idx + 1}
+            onClick={() => setCurrentPage(idx + 1)}
+          >
+            {idx + 1}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} />
+        <Pagination.Last onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages} />
+      </Pagination>
     </div>
   );
 };

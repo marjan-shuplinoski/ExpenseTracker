@@ -6,6 +6,7 @@ import { TransactionContext } from '../../contexts/TransactionContext';
 import type { TransactionContextProps } from '../../contexts/TransactionContext';
 import { AccountContext } from '../../contexts/AccountContext';
 import type { AccountContextProps } from '../../contexts/AccountContext';
+import { useCategory } from '../../contexts/CategoryContext';
 
 interface TransactionFormInputs {
   _id?: string;
@@ -17,14 +18,6 @@ interface TransactionFormInputs {
   type: 'income' | 'expense';
 }
 
-const categories = [
-  { value: 'food', label: 'Food' },
-  { value: 'rent', label: 'Rent' },
-  { value: 'salary', label: 'Salary' },
-  { value: 'utilities', label: 'Utilities' },
-  // add more as needed
-];
-
 const TransactionFormPage: React.FC = () => {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
@@ -32,6 +25,7 @@ const TransactionFormPage: React.FC = () => {
   const { transactions, loading, error, createTransaction, updateTransaction } = transactionContext;
   const accountContext = useContext(AccountContext as React.Context<AccountContextProps>);
   const { accounts } = accountContext;
+  const { state: categoryState } = useCategory();
 
   const isEdit = Boolean(id);
   const txn = isEdit ? transactions.find(txn => txn._id === id) : undefined;
@@ -42,38 +36,50 @@ const TransactionFormPage: React.FC = () => {
   });
 
   useEffect(() => {
-    if (isEdit) {
-      if (txn) {
-        reset({
-          date: txn.date ? txn.date.slice(0, 10) : '', // Ensure yyyy-mm-dd format
-          description: txn.description,
-          amount: txn.amount,
-          category: txn.category,
-          account: txn.account,
-          type: txn.type,
-        });
-      } else if (transactions.length) {
-        // If not found after loading, redirect
-        navigate('/transactions');
-      }
+    if (!isEdit) return;
+    if (txn) {
+      reset({
+        date: txn.date ? txn.date.slice(0, 10) : '',
+        description: txn.description,
+        amount: txn.amount,
+        category: txn.category,
+        account: txn.account,
+        type: txn.type,
+      });
+    } else if (transactions.length) {
+      navigate('/transactions');
     }
-  }, [isEdit, txn, transactions.length, reset, navigate]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  const [submitError, setSubmitError] = React.useState<string | null>(null);
 
   const onSubmit: SubmitHandler<TransactionFormInputs> = async (data) => {
-    const payload = {
-      date: data.date,
-      description: data.description.trim(),
-      amount: Number(data.amount),
-      category: data.category,
-      account: data.account,
-      type: data.type,
-    };
-    if (isEdit && id) {
-      await updateTransaction(id, payload);
-      navigate('/transactions');
-    } else {
-      await createTransaction(payload);
-      navigate('/transactions');
+    setSubmitError(null);
+    try {
+      const payload = {
+        date: data.date,
+        description: data.description.trim(),
+        amount: Number(data.amount),
+        category: data.category,
+        account: data.account,
+        type: data.type,
+      };
+      if (isEdit && id) {
+        await updateTransaction(id, payload);
+        navigate('/transactions');
+      } else {
+        await createTransaction(payload);
+        navigate('/transactions');
+      }
+    } catch (err: unknown) {
+      let message = 'Failed to save transaction';
+      if (err && typeof err === 'object' && 'response' in err && err.response && typeof err.response === 'object' && 'data' in err.response && err.response.data && typeof err.response.data === 'object' && 'message' in err.response.data) {
+        message = (err.response.data as { message?: string }).message || message;
+      } else if (err instanceof Error) {
+        message = err.message;
+      }
+      setSubmitError(message);
     }
   };
 
@@ -81,6 +87,7 @@ const TransactionFormPage: React.FC = () => {
     <div className="container mt-4" style={{ maxWidth: 500 }}>
       <h2>{isEdit ? 'Edit Transaction' : 'Create Transaction'}</h2>
       {error && <Alert variant="danger" role="alert">{error}</Alert>}
+      {submitError && <Alert variant="danger" role="alert">{submitError}</Alert>}
       <Form onSubmit={handleSubmit(onSubmit)} aria-label="Transaction form">
         <Form.Group className="mb-3" controlId="date">
           <Form.Label>Date</Form.Label>
@@ -118,8 +125,8 @@ const TransactionFormPage: React.FC = () => {
           <Form.Label>Category</Form.Label>
           <Form.Select {...register('category', { required: 'Category is required' })} aria-invalid={!!errors.category} aria-describedby="categoryError">
             <option value="">Select category</option>
-            {categories.map(opt => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            {categoryState.categories.map(cat => (
+              <option key={cat._id} value={cat._id}>{cat.name}</option>
             ))}
           </Form.Select>
           {errors.category && <Form.Text id="categoryError" className="text-danger">{errors.category.message}</Form.Text>}

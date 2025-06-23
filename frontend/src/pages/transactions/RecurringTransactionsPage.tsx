@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Button, Table, Spinner, Alert, InputGroup, Form } from 'react-bootstrap';
+import { Button, Table, Spinner, Alert, InputGroup, Form, Pagination } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
 import { formatShortDate } from '../../utils/dateFormat';
@@ -23,6 +23,8 @@ const RecurringTransactionsPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
   const navigate = useNavigate();
   const { state: categoryState } = useCategory();
   const accountCtx = useContext(AccountContext);
@@ -46,7 +48,6 @@ const RecurringTransactionsPage: React.FC = () => {
   }, []);
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Delete this recurring transaction?')) return;
     setLoading(true);
     setError(null);
     try {
@@ -71,6 +72,9 @@ const RecurringTransactionsPage: React.FC = () => {
       r.frequency.toLowerCase().includes(f)
     );
   }, [recurring, filter]);
+
+  const totalPages = Math.ceil(filteredRecurring.length / pageSize);
+  const paginatedRecurring = filteredRecurring.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   return (
     <div className="container mt-4">
@@ -109,12 +113,12 @@ const RecurringTransactionsPage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredRecurring.length === 0 ? (
+              {paginatedRecurring.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="text-center">No recurring transactions</td>
                 </tr>
               ) : (
-                filteredRecurring.map(r => {
+                paginatedRecurring.map(r => {
                   const cat = categoryState.categories.find(c => c._id === r.category);
                   const acc = accountCtx?.accounts?.find(a => a._id === r.account);
                   return (
@@ -125,7 +129,7 @@ const RecurringTransactionsPage: React.FC = () => {
                       <td>{formatShortDate(r.startDate)}</td>
                       <td>{formatShortDate(r.endDate)}</td>
                       <td>{cat ? cat.name : r.category}</td>
-                      <td>{acc ? acc.name : r.account}</td>
+                      <td>{acc ? acc.name : <span className="text-danger" title="Account not found">Unknown</span>}</td>
                       <td>{r.type}</td>
                       <td>
                         <Button size="sm" variant="outline-secondary" onClick={() => navigate(`/recurring/${r._id}/edit`)} aria-label={`Edit ${r.name}`}>Edit</Button>{' '}
@@ -139,6 +143,21 @@ const RecurringTransactionsPage: React.FC = () => {
           </Table>
         )}
       </div>
+      <Pagination className="justify-content-center mt-3">
+        <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
+        <Pagination.Prev onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} />
+        {[...Array(totalPages)].map((_, idx) => (
+          <Pagination.Item
+            key={idx + 1}
+            active={currentPage === idx + 1}
+            onClick={() => setCurrentPage(idx + 1)}
+          >
+            {idx + 1}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} />
+        <Pagination.Last onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages} />
+      </Pagination>
     </div>
   );
 };

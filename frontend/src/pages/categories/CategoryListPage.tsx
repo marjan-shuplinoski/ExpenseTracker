@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Table, Button, Spinner, Form, InputGroup, Alert } from 'react-bootstrap';
+import { Table, Button, Spinner, Form, InputGroup, Alert, Pagination } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useCategory } from '../../contexts/CategoryContext';
 import { fetchCategories, deleteCategory } from '../../services/categoryService';
@@ -10,6 +10,8 @@ const CategoryListPage: React.FC = () => {
   const [sortKey, setSortKey] = React.useState<'name' | 'type'>('name');
   const [sortDir, setSortDir] = React.useState<'asc' | 'desc'>('asc');
   const [error, setError] = React.useState('');
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const pageSize = 10;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +37,9 @@ const CategoryListPage: React.FC = () => {
     return filtered;
   }, [state.categories, filter, sortKey, sortDir]);
 
+  const totalPages = Math.ceil(filteredCategories.length / pageSize);
+  const paginatedCategories = filteredCategories.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+
   const handleSort = (key: 'name' | 'type') => {
     if (sortKey === key) setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
     else {
@@ -44,7 +49,6 @@ const CategoryListPage: React.FC = () => {
   };
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm('Delete this category?')) return;
     try {
       await deleteCategory(id);
       dispatch({ type: 'DELETE_CATEGORY', payload: id });
@@ -83,10 +87,10 @@ const CategoryListPage: React.FC = () => {
           <tbody>
             {state.loading ? (
               <tr><td colSpan={3} className="text-center"><Spinner animation="border" size="sm" /></td></tr>
-            ) : filteredCategories.length === 0 ? (
+            ) : paginatedCategories.length === 0 ? (
               <tr><td colSpan={3} className="text-center">No categories found.</td></tr>
             ) : (
-              filteredCategories.map(category => (
+              paginatedCategories.map(category => (
                 <tr key={category._id}>
                   <td>{category.name}</td>
                   <td>{category.type.charAt(0).toUpperCase() + category.type.slice(1)}</td>
@@ -100,6 +104,21 @@ const CategoryListPage: React.FC = () => {
           </tbody>
         </Table>
       </div>
+      <Pagination className="justify-content-center mt-3">
+        <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
+        <Pagination.Prev onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} />
+        {[...Array(totalPages)].map((_, idx) => (
+          <Pagination.Item
+            key={idx + 1}
+            active={currentPage === idx + 1}
+            onClick={() => setCurrentPage(idx + 1)}
+          >
+            {idx + 1}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} />
+        <Pagination.Last onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages} />
+      </Pagination>
     </div>
   );
 };

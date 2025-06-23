@@ -10,6 +10,10 @@ import { AccountProvider } from './contexts/AccountContext';
 import { CategoryProvider } from './contexts/CategoryContext';
 import LoadingScreen from './components/LoadingScreen';
 import { useAuth } from './hooks/useAuth';
+import { NotificationProvider } from './contexts/NotificationContext';
+import Notification from './components/Notification';
+import NotificationHandlerBridge from './contexts/NotificationHandlerBridge';
+import Footer from './components/Footer';
 // Page imports
 import DashboardPage from './pages/dashboard/DashboardPage';
 import AccountListPage from './pages/accounts/AccountListPage';
@@ -77,23 +81,28 @@ function AppRoutes() {
 
 function App() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <Router>
-          <AccountProvider>
-            <BudgetProvider>
-              <TransactionProvider>
-                <CategoryProvider>
-                  <main className="min-vh-100 bg-body" aria-label="Main Content">
-                    <AppRoutes />
-                  </main>
-                </CategoryProvider>
-              </TransactionProvider>
-            </BudgetProvider>
-          </AccountProvider>
-        </Router>
-      </ThemeProvider>
-    </AuthProvider>
+    <NotificationProvider>
+      <NotificationHandlerBridge />
+      <AuthProvider>
+        <ThemeProvider>
+          <Router>
+            <AccountProvider>
+              <BudgetProvider>
+                <TransactionProvider>
+                  <CategoryProvider>
+                    <main className="min-vh-100 bg-body" aria-label="Main Content">
+                      <Notification />
+                      <AppRoutes />
+                      <Footer />
+                    </main>
+                  </CategoryProvider>
+                </TransactionProvider>
+              </BudgetProvider>
+            </AccountProvider>
+          </Router>
+        </ThemeProvider>
+      </AuthProvider>
+    </NotificationProvider>
   );
 }
 

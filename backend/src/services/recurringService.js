@@ -4,6 +4,7 @@
 
 import Transaction from '../models/Transaction.js';
 import RecurringTransaction from '../models/RecurringTransaction.js';
+import Budget from '../models/Budget.js';
 import mongoose from 'mongoose';
 import dayjs from 'dayjs';
 
@@ -26,7 +27,7 @@ export async function processRecurringTransactions() {
   let count = 0;
   for (const recur of due) {
     // Create a new Transaction
-    await Transaction.create({
+    const txn = await Transaction.create({
       user: recur.user,
       account: recur.account,
       category: recur.category,
@@ -35,6 +36,18 @@ export async function processRecurringTransactions() {
       description: recur.description,
       date: recur.nextRun,
     });
+    // Update budget currentBalance
+    if (txn.category) {
+      const budget = await Budget.findOne({ user: txn.user, category: txn.category });
+      if (budget) {
+        if (txn.type === 'expense') {
+          budget.currentBalance -= txn.amount;
+        } else if (txn.type === 'income') {
+          budget.currentBalance += txn.amount;
+        }
+        await budget.save();
+      }
+    }
     // Calculate nextRun
     let next = dayjs(recur.nextRun);
     switch (recur.frequency) {

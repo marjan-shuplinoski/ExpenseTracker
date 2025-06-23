@@ -1,5 +1,5 @@
 import React, { useContext, useMemo, useState } from 'react';
-import { Table, Button, Spinner, Alert, Form, InputGroup } from 'react-bootstrap';
+import { Table, Button, Spinner, Alert, Form, InputGroup, Pagination } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { AccountContext } from '../../contexts/AccountContext';
 
@@ -8,6 +8,8 @@ const AccountListPage: React.FC = () => {
   const [filter, setFilter] = useState('');
   const [sortKey, setSortKey] = useState<'name' | 'type' | 'balance' | 'currency'>('name');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
   const navigate = useNavigate();
 
   const ariaSortMap: Record<'asc' | 'desc', 'ascending' | 'descending'> = {
@@ -33,6 +35,9 @@ const AccountListPage: React.FC = () => {
     });
     return filtered;
   }, [accounts, filter, sortKey, sortDir]);
+
+  const totalPages = Math.ceil(filteredAccounts.length / pageSize);
+  const paginatedAccounts = filteredAccounts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const handleSort = (key: typeof sortKey) => {
     if (sortKey === key) setSortDir(sortDir === 'asc' ? 'desc' : 'asc');
@@ -74,10 +79,10 @@ const AccountListPage: React.FC = () => {
           <tbody>
             {loading ? (
               <tr><td colSpan={5} className="text-center"><Spinner animation="border" size="sm" /></td></tr>
-            ) : filteredAccounts.length === 0 ? (
+            ) : paginatedAccounts.length === 0 ? (
               <tr><td colSpan={5} className="text-center">No accounts found.</td></tr>
             ) : (
-              filteredAccounts.map(acc => (
+              paginatedAccounts.map(acc => (
                 <tr key={acc._id}>
                   <td>{acc.name}</td>
                   <td>{acc.type}</td>
@@ -93,6 +98,21 @@ const AccountListPage: React.FC = () => {
           </tbody>
         </Table>
       </div>
+      <Pagination className="justify-content-center mt-3">
+        <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
+        <Pagination.Prev onClick={() => setCurrentPage(p => Math.max(1, p - 1))} disabled={currentPage === 1} />
+        {[...Array(totalPages)].map((_, idx) => (
+          <Pagination.Item
+            key={idx + 1}
+            active={currentPage === idx + 1}
+            onClick={() => setCurrentPage(idx + 1)}
+          >
+            {idx + 1}
+          </Pagination.Item>
+        ))}
+        <Pagination.Next onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))} disabled={currentPage === totalPages} />
+        <Pagination.Last onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages} />
+      </Pagination>
     </div>
   );
 };

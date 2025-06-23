@@ -16,25 +16,74 @@ const Menu: React.FC = () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             {user && <>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/dashboard">Dashboard</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' fw-bold bg-primary text-white rounded px-2' : '')
+                  }
+                  to="/dashboard"
+                >
+                  Dashboard
+                </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/accounts">Accounts</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' fw-bold bg-primary text-white rounded px-2' : '')
+                  }
+                  to="/accounts"
+                >
+                  Accounts
+                </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/transactions">Transactions</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' fw-bold bg-primary text-white rounded px-2' : '')
+                  }
+                  to="/transactions"
+                >
+                  Transactions
+                </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/recurring">Recurring</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' fw-bold bg-primary text-white rounded px-2' : '')
+                  }
+                  to="/recurring"
+                >
+                  Recurring
+                </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/budgets">Budgets</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' fw-bold bg-primary text-white rounded px-2' : '')
+                  }
+                  to="/budgets"
+                >
+                  Budgets
+                </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/categories">Categories</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' fw-bold bg-primary text-white rounded px-2' : '')
+                  }
+                  to="/categories"
+                >
+                  Categories
+                </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/reports">Reports</NavLink>
+                <NavLink
+                  className={({ isActive }) =>
+                    'nav-link' + (isActive ? ' fw-bold bg-primary text-white rounded px-2' : '')
+                  }
+                  to="/reports"
+                >
+                  Reports
+                </NavLink>
               </li>
             </>}
           </ul>

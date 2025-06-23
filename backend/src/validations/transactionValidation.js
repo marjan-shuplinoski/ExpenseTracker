@@ -2,8 +2,8 @@
 import Joi from 'joi';
 
 export const createTransactionSchema = Joi.object({
-  account: Joi.string().required(),
-  category: Joi.string().required(),
+  account: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+  category: Joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
   type: Joi.string().valid('income', 'expense', 'transfer').required(),
   amount: Joi.number().required(),
   description: Joi.string().allow(''),
@@ -11,8 +11,8 @@ export const createTransactionSchema = Joi.object({
 });
 
 export const updateTransactionSchema = Joi.object({
-  account: Joi.string(),
-  category: Joi.string(),
+  account: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
+  category: Joi.string().regex(/^[0-9a-fA-F]{24}$/),
   type: Joi.string().valid('income', 'expense', 'transfer'),
   amount: Joi.number(),
   description: Joi.string().allow(''),

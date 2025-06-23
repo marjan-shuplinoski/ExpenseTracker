@@ -1,5 +1,6 @@
-import React, { createContext, useReducer, useCallback, useEffect } from 'react';
+import React, { createContext, useReducer, useCallback, useEffect, useContext } from 'react';
 import api from '../services/api';
+import { BudgetContext } from './BudgetContext';
 
 export interface Transaction {
   _id: string;
@@ -69,6 +70,7 @@ const TransactionContext = createContext<TransactionContextProps | undefined>(un
 
 export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(transactionReducer, initialState);
+  const budgetCtx = useContext(BudgetContext);
 
   function isApiError(err: unknown): err is { response: { data: { message: string } } } {
     if (
@@ -105,26 +107,30 @@ export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ c
     try {
       const res = await api.post('/transactions', data);
       dispatch({ type: 'CREATE_SUCCESS', payload: res.data });
+      await fetchTransactions();
+      if (budgetCtx?.fetchBudgets) await budgetCtx.fetchBudgets();
     } catch (err) {
       let errorMsg = 'Failed to create transaction.';
       if (isApiError(err)) errorMsg = err.response.data.message;
       else if (err instanceof Error) errorMsg = err.message;
       dispatch({ type: 'FETCH_ERROR', payload: errorMsg });
     }
-  }, []);
+  }, [fetchTransactions, budgetCtx]);
 
   const updateTransaction = useCallback(async (id: string, data: Partial<Transaction>) => {
     dispatch({ type: 'FETCH_START' });
     try {
       const res = await api.put(`/transactions/${id}`, data);
       dispatch({ type: 'UPDATE_SUCCESS', payload: res.data });
+      await fetchTransactions();
+      if (budgetCtx?.fetchBudgets) await budgetCtx.fetchBudgets();
     } catch (err) {
       let errorMsg = 'Failed to update transaction.';
       if (isApiError(err)) errorMsg = err.response.data.message;
       else if (err instanceof Error) errorMsg = err.message;
       dispatch({ type: 'FETCH_ERROR', payload: errorMsg });
     }
-  }, []);
+  }, [fetchTransactions, budgetCtx]);
 
   const deleteTransaction = useCallback(async (id: string) => {
     dispatch({ type: 'FETCH_START' });
@@ -141,7 +147,8 @@ export const TransactionProvider: React.FC<{ children: React.ReactNode }> = ({ c
 
   useEffect(() => {
     fetchTransactions();
-  }, [fetchTransactions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <TransactionContext.Provider value={{ ...state, fetchTransactions, createTransaction, updateTransaction, deleteTransaction }}>
