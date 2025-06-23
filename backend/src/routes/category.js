@@ -1,3 +1,10 @@
+/**
+ * Category management API routes.
+ * @module routes/category
+ * @requires express
+ * @requires controllers/categoryController
+ */
+
 // Category routes for ExpenseTracker (ES Modules)
 import express from 'express';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -7,6 +14,15 @@ import { requireAuth } from '../middleware/security.js';
 
 const router = express.Router();
 router.use(mongoSanitize());
+
+/**
+ * @swagger
+ * /api/category:
+ *   get:
+ *     summary: Get all categories for the authenticated user
+ *   post:
+ *     summary: Create a new category
+ */
 
 // Create category
 router.post('/', requireAuth, async (req, res, next) => {
@@ -18,6 +34,17 @@ router.post('/', requireAuth, async (req, res, next) => {
     res.status(201).json(category);
   } catch (err) { next(err); }
 });
+
+/**
+ * @swagger
+ * /api/category/:id:
+ *   get:
+ *     summary: Get category by ID
+ *   put:
+ *     summary: Update category by ID
+ *   delete:
+ *     summary: Delete category by ID
+ */
 
 // Get all categories for user
 router.get('/', requireAuth, async (req, res, next) => {

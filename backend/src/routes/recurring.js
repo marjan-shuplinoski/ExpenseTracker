@@ -1,3 +1,30 @@
+/**
+ * Recurring transaction API routes.
+ * @module routes/recurring
+ * @requires express
+ * @requires controllers/recurringController
+ */
+
+/**
+ * @swagger
+ * /api/recurring:
+ *   get:
+ *     summary: Get all recurring transactions for the authenticated user
+ *   post:
+ *     summary: Create a new recurring transaction
+ */
+
+/**
+ * @swagger
+ * /api/recurring/:id:
+ *   get:
+ *     summary: Get recurring transaction by ID
+ *   put:
+ *     summary: Update recurring transaction by ID
+ *   delete:
+ *     summary: Delete recurring transaction by ID
+ */
+
 // Recurring transaction routes for ExpenseTracker (ES Modules)
 import express from 'express';
 import { createRecurring, getRecurring, updateRecurring, deleteRecurring, listRecurring } from '../controllers/recurringController.js';

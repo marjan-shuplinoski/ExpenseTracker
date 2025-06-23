@@ -1,3 +1,10 @@
+/**
+ * Account-related API routes.
+ * @module routes/account
+ * @requires express
+ * @requires controllers/accountController
+ */
+
 // Account routes for ExpenseTracker (ES Modules)
 import express from 'express';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -7,6 +14,15 @@ import { requireAuth } from '../middleware/security.js';
 
 const router = express.Router();
 router.use(mongoSanitize());
+
+/**
+ * @swagger
+ * /api/account:
+ *   get:
+ *     summary: Get all accounts for the authenticated user
+ *   post:
+ *     summary: Create a new account
+ */
 
 // Create account
 router.post('/', requireAuth, async (req, res, next) => {
@@ -25,6 +41,17 @@ router.get('/', requireAuth, async (req, res, next) => {
     res.json(accounts);
   } catch (err) { next(err); }
 });
+
+/**
+ * @swagger
+ * /api/account/:id:
+ *   get:
+ *     summary: Get account by ID
+ *   put:
+ *     summary: Update account by ID
+ *   delete:
+ *     summary: Delete account by ID
+ */
 
 // Get account by ID
 router.get('/:id', requireAuth, async (req, res, next) => {

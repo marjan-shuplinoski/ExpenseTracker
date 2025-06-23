@@ -1,3 +1,30 @@
+/**
+ * Budget management API routes.
+ * @module routes/budget
+ * @requires express
+ * @requires controllers/budgetController
+ */
+
+/**
+ * @swagger
+ * /api/budget:
+ *   get:
+ *     summary: Get all budgets for the authenticated user
+ *   post:
+ *     summary: Create a new budget
+ */
+
+/**
+ * @swagger
+ * /api/budget/:id:
+ *   get:
+ *     summary: Get budget by ID
+ *   put:
+ *     summary: Update budget by ID
+ *   delete:
+ *     summary: Delete budget by ID
+ */
+
 // Budget routes for ExpenseTracker (ES Modules)
 import express from 'express';
 import { requireAuth } from '../middleware/security.js';

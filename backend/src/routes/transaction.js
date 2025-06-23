@@ -1,3 +1,30 @@
+/**
+ * Transaction management API routes.
+ * @module routes/transaction
+ * @requires express
+ * @requires controllers/transactionController
+ */
+
+/**
+ * @swagger
+ * /api/transaction:
+ *   get:
+ *     summary: Get all transactions for the authenticated user
+ *   post:
+ *     summary: Create a new transaction
+ */
+
+/**
+ * @swagger
+ * /api/transaction/:id:
+ *   get:
+ *     summary: Get transaction by ID
+ *   put:
+ *     summary: Update transaction by ID
+ *   delete:
+ *     summary: Delete transaction by ID
+ */
+
 // Transaction routes for ExpenseTracker (ES Modules)
 import express from 'express';
 import mongoSanitize from 'express-mongo-sanitize';

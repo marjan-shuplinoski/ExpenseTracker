@@ -1,3 +1,23 @@
+/**
+ * Authentication and user session API routes.
+ * @module routes/auth
+ * @requires express
+ * @requires controllers/authController
+ */
+
+/**
+ * @swagger
+ * /api/auth/login:
+ *   post:
+ *     summary: Authenticate user and return JWT
+ * /api/auth/register:
+ *   post:
+ *     summary: Register a new user
+ * /api/auth/logout:
+ *   post:
+ *     summary: Log out the current user
+ */
+
 // Auth routes for ExpenseTracker (ES Modules)
 import express from 'express';
 import Joi from 'joi';

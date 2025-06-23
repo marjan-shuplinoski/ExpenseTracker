@@ -1,4 +1,17 @@
-// Reports routes for ExpenseTracker (ES Modules)
+/**
+ * Financial reports API routes.
+ * @module routes/reports
+ * @requires express
+ * @requires controllers/reportsController
+ */
+
+/**
+ * @swagger
+ * /api/reports:
+ *   get:
+ *     summary: Get financial reports for the authenticated user
+ */
+
 import express from 'express';
 import { validateReportSummary, validateReportMonthly, validateReportYearly, validateReportExport } from '../validations/reportValidation.js';
 import { requireAuth } from '../middleware/security.js';
