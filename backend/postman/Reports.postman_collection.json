@@ -1,9 +1,9 @@
 {
   "info": {
     "_postman_id": "b7e1e7e2-6c2a-4b7a-9e2e-8e2e7e2e7e2e",
-    "name": "ExpenseTracker Reports API",
+    "name": "ExpenseTracker Reports & Export API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Postman collection for Reports endpoints (summary, monthly, yearly, export)"
+    "description": "Postman collection for Reports & Export endpoints (summary, monthly, yearly, export)"
   },
   "item": [
     {
@@ -14,9 +14,13 @@
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/reports/summary",
+          "raw": "{{baseUrl}}/api/reports/summary?start=2025-01-01&end=2025-12-31",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "reports", "summary"]
+          "path": ["api", "reports", "summary"],
+          "query": [
+            { "key": "start", "value": "2025-01-01" },
+            { "key": "end", "value": "2025-12-31" }
+          ]
         }
       }
     },
@@ -28,9 +32,13 @@
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/reports/monthly",
+          "raw": "{{baseUrl}}/api/reports/monthly?start=2025-01-01&end=2025-12-31",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "reports", "monthly"]
+          "path": ["api", "reports", "monthly"],
+          "query": [
+            { "key": "start", "value": "2025-01-01" },
+            { "key": "end", "value": "2025-12-31" }
+          ]
         }
       }
     },
@@ -42,9 +50,13 @@
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/reports/yearly",
+          "raw": "{{baseUrl}}/api/reports/yearly?start=2020-01-01&end=2025-12-31",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "reports", "yearly"]
+          "path": ["api", "reports", "yearly"],
+          "query": [
+            { "key": "start", "value": "2020-01-01" },
+            { "key": "end", "value": "2025-12-31" }
+          ]
         }
       }
     },
@@ -56,23 +68,29 @@
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/reports/export/csv",
+          "raw": "{{baseUrl}}/api/reports/export?format=csv",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "reports", "export", "csv"]
+          "path": ["api", "reports", "export"],
+          "query": [
+            { "key": "format", "value": "csv" }
+          ]
         }
       }
     },
     {
-      "name": "Export Report (PDF)",
+      "name": "Export Report (JSON)",
       "request": {
         "method": "GET",
         "header": [
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
         ],
         "url": {
-          "raw": "{{baseUrl}}/api/reports/export/pdf",
+          "raw": "{{baseUrl}}/api/reports/export?format=json",
           "host": ["{{baseUrl}}"],
-          "path": ["api", "reports", "export", "pdf"]
+          "path": ["api", "reports", "export"],
+          "query": [
+            { "key": "format", "value": "json" }
+          ]
         }
       }
     }

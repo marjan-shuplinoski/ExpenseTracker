@@ -1,39 +1,11 @@
 {
   "info": {
     "_postman_id": "recurring-collection-2025-06-20",
-    "name": "ExpenseTracker Recurring API",
+    "name": "ExpenseTracker Recurring Transactions",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Postman collection for Recurring Transaction endpoints (CRUD)"
+    "description": "Postman collection for Recurring Transactions endpoints. Uses variables for baseUrl and jwtToken."
   },
   "item": [
-    {
-      "name": "Get All Recurring Transactions",
-      "request": {
-        "method": "GET",
-        "header": [
-          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
-        ],
-        "url": {
-          "raw": "{{baseUrl}}/api/recurring",
-          "host": ["{{baseUrl}}"],
-          "path": ["api", "recurring"]
-        }
-      }
-    },
-    {
-      "name": "Get Recurring Transaction By ID",
-      "request": {
-        "method": "GET",
-        "header": [
-          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
-        ],
-        "url": {
-          "raw": "{{baseUrl}}/api/recurring/:id",
-          "host": ["{{baseUrl}}"],
-          "path": ["api", "recurring", ":id"]
-        }
-      }
-    },
     {
       "name": "Create Recurring Transaction",
       "request": {
@@ -42,16 +14,35 @@
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
           { "key": "Content-Type", "value": "application/json", "type": "text" }
         ],
+        "url": { "raw": "{{baseUrl}}/api/recurring", "host": ["{{baseUrl}}"], "path": ["api", "recurring"] },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"amount\": 50,\n  \"type\": \"expense\",\n  \"category\": \"Subscription\",\n  \"account\": \"Main Checking\",\n  \"interval\": \"monthly\",\n  \"startDate\": \"2025-06-01\"\n}"
-        },
-        "url": {
-          "raw": "{{baseUrl}}/api/recurring",
-          "host": ["{{baseUrl}}"],
-          "path": ["api", "recurring"]
+          "raw": "{\n  \"account\": \"{{accountId}}\",\n  \"category\": \"{{categoryId}}\",\n  \"type\": \"expense\",\n  \"amount\": 10,\n  \"description\": \"Test recurring\",\n  \"startDate\": \"2025-06-20T00:00:00.000Z\",\n  \"frequency\": \"monthly\",\n  \"interval\": 1,\n  \"name\": \"Test Recurring\"\n}"
         }
-      }
+      },
+      "response": []
+    },
+    {
+      "name": "List Recurring Transactions",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/recurring", "host": ["{{baseUrl}}"], "path": ["api", "recurring"] }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Recurring Transaction",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": { "raw": "{{baseUrl}}/api/recurring/{{recurringId}}", "host": ["{{baseUrl}}"], "path": ["api", "recurring", "{{recurringId}}"] }
+      },
+      "response": []
     },
     {
       "name": "Update Recurring Transaction",
@@ -61,16 +52,13 @@
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" },
           { "key": "Content-Type", "value": "application/json", "type": "text" }
         ],
+        "url": { "raw": "{{baseUrl}}/api/recurring/{{recurringId}}", "host": ["{{baseUrl}}"], "path": ["api", "recurring", "{{recurringId}}"] },
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"amount\": 60,\n  \"type\": \"expense\",\n  \"category\": \"Subscription\",\n  \"account\": \"Main Checking\",\n  \"interval\": \"monthly\",\n  \"startDate\": \"2025-06-01\"\n}"
-        },
-        "url": {
-          "raw": "{{baseUrl}}/api/recurring/:id",
-          "host": ["{{baseUrl}}"],
-          "path": ["api", "recurring", ":id"]
+          "raw": "{\n  \"name\": \"Updated Recurring\",\n  \"account\": \"{{accountId}}\",\n  \"category\": \"{{categoryId}}\",\n  \"type\": \"expense\",\n  \"amount\": 20,\n  \"description\": \"Updated recurring\",\n  \"startDate\": \"2025-06-20T00:00:00.000Z\",\n  \"frequency\": \"monthly\",\n  \"interval\": 1\n}"
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "Delete Recurring Transaction",
@@ -79,16 +67,16 @@
         "header": [
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
         ],
-        "url": {
-          "raw": "{{baseUrl}}/api/recurring/:id",
-          "host": ["{{baseUrl}}"],
-          "path": ["api", "recurring", ":id"]
-        }
-      }
+        "url": { "raw": "{{baseUrl}}/api/recurring/{{recurringId}}", "host": ["{{baseUrl}}"], "path": ["api", "recurring", "{{recurringId}}"] }
+      },
+      "response": []
     }
   ],
   "variable": [
     { "key": "baseUrl", "value": "http://localhost:5000" },
-    { "key": "token", "value": "" }
+    { "key": "token", "value": "" },
+    { "key": "accountId", "value": "" },
+    { "key": "categoryId", "value": "" },
+    { "key": "recurringId", "value": "" }
   ]
 }

@@ -44,7 +44,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Main Checking\",\n  \"type\": \"checking\",\n  \"balance\": 1000\n}"
+          "raw": "{\n  \"name\": \"Main Checking\",\n  \"type\": \"bank\",\n  \"balance\": 1000\n}"
         },
         "url": {
           "raw": "{{baseUrl}}/api/accounts",
@@ -63,7 +63,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Updated Checking\",\n  \"type\": \"checking\",\n  \"balance\": 1200\n}"
+          "raw": "{\n  \"name\": \"Updated Checking\",\n  \"type\": \"cash\",\n  \"balance\": 1200\n}"
         },
         "url": {
           "raw": "{{baseUrl}}/api/accounts/:id",
