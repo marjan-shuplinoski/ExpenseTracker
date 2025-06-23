@@ -93,40 +93,40 @@ const DashboardPage: React.FC = () => {
 
   return (
     <div className="container mt-4">
-      <div className="d-flex align-items-center mb-3" style={{ gap: 12 }}>
-        <h2 className="mb-0" style={{ fontSize: '2rem', fontWeight: 600, color: 'white' }}>
-          Welcome, 
+      <div className="d-flex align-items-center mb-3 flex-gap-12">
+        <h2 className="mb-0 font-2rem">
+          Welcome,
         </h2>
-        <span style={{ fontSize: '2rem', fontWeight: 600, color: 'white' }}>{user?.name}</span>
+        <span className="font-2rem">{user?.name}</span>
         {user?.avatar && (
-          <img src={user.avatar} alt="Profile" style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover', marginLeft: 8 }} />
+          <img src={user.avatar} alt="Profile" className="avatar-36" />
         )}
       </div>
       {(budgetsError || txError) && <Alert variant="danger">{budgetsError || txError}</Alert>}
       {(budgetsLoading || txLoading) && <Spinner animation="border" />}
       <Row className="mb-4">
-        <Col md={6} style={{ display: 'flex', flexDirection: 'column', height: 400 }}>
-          <Card aria-label="Expenses by Category" style={{ flex: 1 }}>
-            <Card.Body style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Col md={6} className="flex-col-h400">
+          <Card aria-label="Expenses by Category" className="flex-1">
+            <Card.Body className="flex-center-col">
               <Card.Title>Expenses by Category</Card.Title>
-              <div style={{ flex: 1, minHeight: 0 }}>
+              <div className="flex-1-minh0">
                 {chartData ? <Doughnut data={chartData} aria-label="Expenses Pie Chart" options={{ maintainAspectRatio: false }} height={300} /> : <Spinner animation="border" />}
               </div>
             </Card.Body>
           </Card>
         </Col>
-        <Col md={6} style={{ display: 'flex', flexDirection: 'column', height: 400 }}>
-          <Card aria-label="Budget Usage" style={{ flex: 1 }}>
-            <Card.Body style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <Col md={6} className="flex-col-h400">
+          <Card aria-label="Budget Usage" className="flex-1">
+            <Card.Body className="flex-center-col">
               <Card.Title>Budget Usage</Card.Title>
-              <div style={{ flex: 1, minHeight: 0 }}>
+              <div className="flex-1-minh0">
                 {barData ? <Bar data={barData} aria-label="Budget Bar Chart" options={{ maintainAspectRatio: false }} height={300} /> : <Spinner animation="border" />}
               </div>
             </Card.Body>
           </Card>
         </Col>
       </Row>
-      <Row className="mb-4" style={{ position: 'relative', top: 50 }}>
+      <Row className="mb-4 top-50">
         <Col md={12}>
           <Card aria-label="Income and Expense per Category">
             <Card.Body>

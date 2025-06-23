@@ -91,7 +91,7 @@ const ProfilePage: React.FC = () => {
             aria-invalid={!!error}
           />
         </Form.Group>
-        {avatar && <img src={avatar} alt="Avatar" className="mb-3 rounded-circle" style={{ width: 80, height: 80, objectFit: 'cover' }} />}
+        {avatar && <img src={avatar} alt="Avatar" className="mb-3 rounded-circle avatar-80" />}
         <Button variant="primary" type="submit" disabled={loading} aria-busy={loading} className="w-100">
           {loading ? 'Saving…' : 'Save Changes'}
         </Button>

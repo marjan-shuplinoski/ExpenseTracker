@@ -96,7 +96,7 @@ const RecurringTransactionFormPage: React.FC = () => {
   };
 
   return (
-    <div className="container mt-4" style={{ maxWidth: 500 }}>
+    <div className="container mt-4 max-width-500">
       <h2>{isEdit ? 'Edit Recurring Transaction' : 'Add Recurring Transaction'}</h2>
       {error && <Alert variant="danger" role="alert">{error}</Alert>}
       {loading ? <Spinner animation="border" /> : (

@@ -28,9 +28,8 @@ const Notification: React.FC = () => {
           : state.type === 'danger'
           ? 'bg-danger'
           : 'bg-info'
-      } text-white position-fixed top-0 start-50 translate-middle-x mt-3 shadow`}
+      } text-white position-fixed top-0 start-50 translate-middle-x mt-3 shadow z2000-fixed`}
       role="alert"
-      style={{ zIndex: 2000, minWidth: 320, maxWidth: 480, top: 100, position: 'fixed' }}
       aria-live="assertive"
       aria-atomic="true"
     >

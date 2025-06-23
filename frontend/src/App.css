@@ -50,3 +50,26 @@
     color: #000 !important;
   }
 }
+
+main {
+  width: 90vw;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-width-400 { max-width: 400px !important; }
+.max-width-500 { max-width: 500px !important; }
+.height-40px { height: 40px !important; }
+.avatar-36 { width: 36px !important; height: 36px !important; border-radius: 50% !important; object-fit: cover !important; margin-left: 8px !important; }
+.avatar-80 { width: 80px !important; height: 80px !important; object-fit: cover !important; }
+.font-2rem { font-size: 2rem !important; font-weight: 600 !important; color: #28a745 !important; }
+.flex-gap-12 { gap: 12px !important; }
+.flex-col-h400 { display: flex !important; flex-direction: column !important; height: 400px !important; }
+.flex-1 { flex: 1 !important; }
+.flex-center-col { height: 100% !important; display: flex !important; flex-direction: column !important; justify-content: center !important; }
+.flex-1-minh0 { flex: 1 !important; min-height: 0 !important; }
+.z2000-fixed { z-index: 2000 !important; min-width: 320px !important; max-width: 480px !important; top: 100px !important; position: fixed !important; }
+.top-50 { position: relative !important; top: 50px !important; }
+.font-20-middle { font-size: 20px !important; vertical-align: middle !important; }
+.bg-dark-white50 { background: #212529 !important; color: #fff !important; opacity: 0.5 !important; }

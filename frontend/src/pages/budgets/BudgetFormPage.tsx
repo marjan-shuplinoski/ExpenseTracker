@@ -90,7 +90,7 @@ const BudgetFormPage: React.FC = () => {
   };
 
   return (
-    <div className="container mt-4" style={{ maxWidth: 500 }}>
+    <div className="container mt-4 max-width-500">
       <h2>{isEdit ? 'Edit Budget' : 'Create Budget'}</h2>
       {error && <Alert variant="danger" role="alert">{error}</Alert>}
       <Form onSubmit={handleSubmit(onSubmit)} aria-label="Budget form">

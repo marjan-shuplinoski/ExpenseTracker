@@ -63,7 +63,7 @@ const CategoryListPage: React.FC = () => {
         <h2>Categories</h2>
         <Button variant="primary" onClick={() => navigate('/categories/new')}>Add Category</Button>
       </div>
-      <InputGroup className="mb-3" style={{ maxWidth: 400 }}>
+      <InputGroup className="mb-3 max-width-400">
         <InputGroup.Text id="filter-label">Filter</InputGroup.Text>
         <Form.Control
           type="text"

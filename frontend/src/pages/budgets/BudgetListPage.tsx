@@ -86,7 +86,7 @@ const BudgetListPage: React.FC = () => {
         <Button variant="primary" onClick={() => navigate('/budgets/new')}>Add Budget</Button>
       </div>
       {error && <Alert variant="danger" role="alert">{error}</Alert>}
-      <InputGroup className="mb-3" style={{ maxWidth: 400 }}>
+      <InputGroup className="mb-3 max-width-400">
         <InputGroup.Text id="filter-label">Filter</InputGroup.Text>
         <Form.Control
           type="text"
