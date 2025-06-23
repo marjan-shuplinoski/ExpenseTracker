@@ -44,7 +44,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"account\": \"accountId\",\n  \"category\": \"Food\",\n  \"type\": \"expense\",\n  \"amount\": 100,\n  \"description\": \"Lunch\",\n  \"date\": \"2025-06-20\"\n}"
+          "raw": "{\n  \"amount\": 100,\n  \"type\": \"expense\",\n  \"category\": \"Food\",\n  \"account\": \"Main Checking\",\n  \"date\": \"2025-06-23\"\n}"
         },
         "url": {
           "raw": "{{baseUrl}}/api/transactions",
@@ -63,7 +63,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"account\": \"accountId\",\n  \"category\": \"Groceries\",\n  \"type\": \"expense\",\n  \"amount\": 120,\n  \"description\": \"Supermarket\",\n  \"date\": \"2025-06-20\"\n}"
+          "raw": "{\n  \"amount\": 120,\n  \"type\": \"expense\",\n  \"category\": \"Food\",\n  \"account\": \"Main Checking\",\n  \"date\": \"2025-06-23\"\n}"
         },
         "url": {
           "raw": "{{baseUrl}}/api/transactions/:id",

@@ -1,11 +1,39 @@
 {
   "info": {
     "_postman_id": "budget-collection-2025",
-    "name": "ExpenseTracker - Budget API",
+    "name": "ExpenseTracker Budget API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": "Postman collection for Budget endpoints (CRUD, progress) in ExpenseTracker. All endpoints require JWT auth."
+    "description": "Postman collection for Budget endpoints (CRUD)"
   },
   "item": [
+    {
+      "name": "Get All Budgets",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/budgets",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "budgets"]
+        }
+      }
+    },
+    {
+      "name": "Get Budget By ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api/budgets/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "budgets", ":id"]
+        }
+      }
+    },
     {
       "name": "Create Budget",
       "request": {
@@ -16,19 +44,13 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Test Budget\",\n  \"amount\": 1000,\n  \"period\": \"monthly\",\n  \"startDate\": \"2025-06-01\",\n  \"endDate\": \"2025-06-30\"\n}"
+          "raw": "{\n  \"name\": \"Monthly Food\",\n  \"amount\": 500,\n  \"category\": \"Food\",\n  \"startDate\": \"2025-06-01\",\n  \"endDate\": \"2025-06-30\"\n}"
         },
-        "url": { "raw": "{{baseUrl}}/api/budgets", "host": ["{{baseUrl}}"], "path": ["api", "budgets"] }
-      }
-    },
-    {
-      "name": "Get All Budgets",
-      "request": {
-        "method": "GET",
-        "header": [
-          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
-        ],
-        "url": { "raw": "{{baseUrl}}/api/budgets", "host": ["{{baseUrl}}"], "path": ["api", "budgets"] }
+        "url": {
+          "raw": "{{baseUrl}}/api/budgets",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "budgets"]
+        }
       }
     },
     {
@@ -41,9 +63,13 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"name\": \"Updated Budget\",\n  \"amount\": 2000,\n  \"period\": \"monthly\",\n  \"startDate\": \"2025-06-01\",\n  \"endDate\": \"2025-06-30\"\n}"
+          "raw": "{\n  \"name\": \"Updated Food\",\n  \"amount\": 600,\n  \"category\": \"Food\",\n  \"startDate\": \"2025-06-01\",\n  \"endDate\": \"2025-06-30\"\n}"
         },
-        "url": { "raw": "{{baseUrl}}/api/budgets/:id", "host": ["{{baseUrl}}"], "path": ["api", "budgets", ":id"] }
+        "url": {
+          "raw": "{{baseUrl}}/api/budgets/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "budgets", ":id"]
+        }
       }
     },
     {
@@ -53,17 +79,11 @@
         "header": [
           { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
         ],
-        "url": { "raw": "{{baseUrl}}/api/budgets/:id", "host": ["{{baseUrl}}"], "path": ["api", "budgets", ":id"] }
-      }
-    },
-    {
-      "name": "Get Budget Progress",
-      "request": {
-        "method": "GET",
-        "header": [
-          { "key": "Authorization", "value": "Bearer {{token}}", "type": "text" }
-        ],
-        "url": { "raw": "{{baseUrl}}/api/budgets/:id/progress", "host": ["{{baseUrl}}"], "path": ["api", "budgets", ":id", "progress"] }
+        "url": {
+          "raw": "{{baseUrl}}/api/budgets/:id",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "budgets", ":id"]
+        }
       }
     }
   ],
